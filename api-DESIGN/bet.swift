@@ -24,6 +24,7 @@ class SingleEvent {
         self.time = time
         
     }
+    init() {    }
     
     
     
