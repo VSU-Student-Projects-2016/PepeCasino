@@ -11,7 +11,7 @@ import UIKit
 class SingleEventViewController: UIViewController {
 
     
-    
+    var Event = SingleEvent()		
     override func viewDidLoad() {
         super.viewDidLoad()
 
