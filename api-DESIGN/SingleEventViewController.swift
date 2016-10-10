@@ -11,10 +11,28 @@ import UIKit
 class SingleEventViewController: UIViewController {
 
     
-    var Event = SingleEvent()		
+    @IBOutlet weak var evStatus: UILabel!
+    @IBOutlet weak var evTeams: UILabel!
+    @IBOutlet weak var evTime: UILabel!
+    @IBOutlet weak var evScore: UILabel!
+
+    var Event = SingleEvent()
     override func viewDidLoad() {
+        if Event.status == 0 {
+            evStatus.text = "Event hasn't started yet" }
+        else
+            if Event.status == 1 {
+                evStatus.text = "LIVE!" }
+            else {
+                evStatus.text = "The event is over"}
+        
+        evTeams.text = Event.completeTeamNames()
+        evTime.text = Event.timeAsString()
+        evScore.text = Event.scoreAsString()
+        
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 

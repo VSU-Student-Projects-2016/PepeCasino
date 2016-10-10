@@ -48,17 +48,20 @@ class SingleEventTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
 
-        let Event = events[indexPath.row]
-        cell.EventInfo.text = Event.homeTeamName + " - " + Event.awayTeamName
+        cell.Event  = events[indexPath.row]
+        cell.EventInfo.text = cell.Event.completeTeamNames()
         //cell.w1button.setTitle(String(Event.coeffs[0]), for: UIControlState.normal)
         //cell.drawbutton.setTitle(String(Event.coeffs[1]), for: UIControlState.normal)
         //cell.w2button.setTitle(String(Event.coeffs[2]), for: UIControlState.normal)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-        cell.EventTimeAndStatus.text = dateFormatter.string(from: Event.time)
+        cell.EventTimeAndStatus.text = cell.Event.timeAsString()
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
+        let path = self.tableView.indexPathForSelectedRow?.row
+        DestViewController.Event = events[path!]
     }
     /*
     // Override to support conditional editing of the table view.

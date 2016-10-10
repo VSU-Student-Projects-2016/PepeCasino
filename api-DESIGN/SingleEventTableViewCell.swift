@@ -12,6 +12,7 @@ class SingleEventTableViewCell: UITableViewCell {
 
     @IBOutlet var EventInfo: UILabel!
     @IBOutlet var EventTimeAndStatus: UILabel!
+    var Event = SingleEvent()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +24,5 @@ class SingleEventTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HeZ-EY-eFW" id="vU5-zx-H6U">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="playback" tableViewCell="KdP-IC-J27" id="wfx-pC-5Rg">
-                                    <frame key="frameInset" width="375" height="69"/>
+                                    <frame key="frameInset" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status &amp; Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9n-Ga-OxL">
@@ -111,7 +111,7 @@
                             <outlet property="delegate" destination="vfW-TN-4JC" id="Xpq-Rz-ZNP"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" tag="1" title="Event list" id="jtL-BR-mNV"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Events" id="jtL-BR-mNV"/>
                     <navigationItem key="navigationItem" title="Balance" id="9Me-yD-NRd"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
@@ -138,22 +138,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-cd-B2V">
-                                <frame key="frameInset" minX="166" minY="198" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-cd-B2V">
+                                <frame key="frameInset" minX="57" minY="198" width="260" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="763-BJ-sd7">
-                                <frame key="frameInset" minX="151" minY="81" width="73" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-MH-SiI">
-                                <frame key="frameInset" minX="109" minY="280" width="157" height="21"/>
+                                <frame key="frameInset" minX="109" minY="280" width="157" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -186,20 +179,32 @@
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="763-BJ-sd7">
+                                <frame key="frameInset" minX="90" minY="122" width="195" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="One bet" id="1aY-PX-0p7"/>
+                    <connections>
+                        <outlet property="evScore" destination="6Xb-MH-SiI" id="dSK-fV-Cbd"/>
+                        <outlet property="evStatus" destination="763-BJ-sd7" id="FMu-Gh-wHo"/>
+                        <outlet property="evTeams" destination="cXY-yp-mfN" id="OSm-v0-K5s"/>
+                        <outlet property="evTime" destination="kPZ-cd-B2V" id="PmK-Qk-s9o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Qz-lv-VW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.5999999999999" y="-1898.5007496251876"/>
+            <point key="canvasLocation" x="2740" y="-1898.5007496251876"/>
         </scene>
         <!--Bets-->
         <scene sceneID="0cv-nt-GEL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wDC-np-nG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="xD)" title="Bets" automaticallyAdjustsScrollViewInsets="NO" id="deh-hB-pj9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bHw-VP-dBY"/>
                     <toolbarItems/>
@@ -220,6 +225,7 @@
                         <segue destination="clq-e3-cHV" kind="relationship" relationship="rootViewController" id="nsL-8y-pcY"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wDC-np-nG6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="466" y="-2895"/>
         </scene>
