@@ -59,4 +59,5 @@ class SingleBet : SingleEvent {
     var coefficient = 0
     var betTime = Date()
     var amount = 0
+    var betStatus = 0 //0 - lost, 1 - won
 }
