@@ -55,9 +55,21 @@ class SingleEvent {
 
 class SingleBet : SingleEvent {
     
+    override init() {
+        super.init()
+    }
+    
+    init( homeTeamName: String, awayTeamName: String, isWon : Bool, amount : Double, coefficient : Double) {
+        super.init()
+        self.homeTeamName = homeTeamName
+        self.awayTeamName = awayTeamName
+        self.isWon = isWon
+        self.amount = amount
+        self.coefficient = coefficient
+    }
     var choice = 0 // 0 - first, 1 - draw, 2 - second
-    var coefficient = 0
+    var coefficient = 0.0
     var betTime = Date()
-    var amount = 0
-    var betStatus = 0 //0 - lost, 1 - won
+    var amount = 0.0
+    var isWon = false //0 - lost, 1 - won
 }

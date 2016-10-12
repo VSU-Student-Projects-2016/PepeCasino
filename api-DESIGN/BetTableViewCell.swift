@@ -10,6 +10,11 @@ import UIKit
 
 class BetTableViewCell: UITableViewCell {
 
+    @IBOutlet var lbTeamNames: UILabel!
+    @IBOutlet var lbStatus: UILabel!
+    @IBOutlet var lbPlaced: UILabel!
+    @IBOutlet var lbPaid: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

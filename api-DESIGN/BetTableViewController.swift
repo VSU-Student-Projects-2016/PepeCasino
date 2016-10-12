@@ -10,14 +10,20 @@ import UIKit
 
 class BetTableViewController: UITableViewController {
 
+    
+    var bets = [SingleBet]()
+    
+    func loadDSampleEvents() {
+        let bet1 = SingleBet(homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
+        let bet2 = SingleBet(homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
+        let bet3 = SingleBet(homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
+        bets.append(bet1)
+        bets.append(bet2)
+        bets.append(bet3)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        loadDSampleEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,25 +34,39 @@ class BetTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return bets.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "SingleBetCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
+        
+        let Bet  = bets[indexPath.row]
+        
+        let str = Bet.completeTeamNames()
+        cell.lbTeamNames.text = str
+        cell.lbPlaced.text = cell.lbPlaced.text! + String(Bet.amount)
+        if Bet.isWon {
+            
+            cell.lbStatus.textColor = UIColor.green
+            cell.lbStatus.text = "WIN"
+            cell.lbPaid.text = cell.lbPaid.text! + String(Bet.amount * Bet.coefficient)
+            
+        }
+        else {
+            cell.lbStatus.textColor = UIColor.red
+            cell.lbStatus.text = "LOSE"
+            cell.lbPaid.text = cell.lbPaid.text! +  "0"
+        }
+        //cell.lbStatus.text = String(Bet.isWon)
+        
         return cell
     }
-    */
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

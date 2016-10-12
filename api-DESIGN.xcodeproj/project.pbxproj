@@ -66,8 +66,8 @@
 			children = (
 				AE15D3E21D9FD53B00ADAEC1 /* AppDelegate.swift */,
 				AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */,
-				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
 				84C78FF51DAE74F100972F0F /* BetTableViewCell.swift */,
+				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
 				AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */,
 				84323D101DA45A24003D6A83 /* SingleEventViewController.swift */,
 				AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */,
