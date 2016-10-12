@@ -46,20 +46,17 @@ class SingleEventTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleEventCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
-        //let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
 
         cell.Event  = events[indexPath.row]
+        
         cell.EventInfo.text = cell.Event.completeTeamNames()
-        //cell.w1button.setTitle(String(Event.coeffs[0]), for: UIControlState.normal)
-        //cell.drawbutton.setTitle(String(Event.coeffs[1]), for: UIControlState.normal)
-        //cell.w2button.setTitle(String(Event.coeffs[2]), for: UIControlState.normal)
         cell.EventTimeAndStatus.text = cell.Event.timeAsString()
         
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
+        let DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
         let path = self.tableView.indexPathForSelectedRow?.row
         DestViewController.Event = events[path!]
     }

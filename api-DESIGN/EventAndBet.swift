@@ -8,12 +8,7 @@
 
 import Foundation
 
-class SingleOneBet {
-    var coeff = 0.0
-    var choice = 0
-    let id = 0
-    let time = NSDate()
-}
+
 
 
 class SingleEvent {
@@ -50,9 +45,18 @@ class SingleEvent {
         return String(score[0]) + ":" + String(score[1])
     }
     
-    var coeffs = [Double]() //Коэффициенты на матч: [0] - на первую, [1] - на ничью, [2] - на вторую
+    var coeffs = [Double]() //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
     var score = Array(repeating: 0, count: 2)
-    var time = Date() //Время проведения матча
-    var id = 0 //ID матча
-    var status = 0 //0 - , 1 - идет, 2 - закончился
+    var time = Date() //Start time
+    var id = 0 //Match ID
+    var status = 0 //0 - not started , 1 - live), 2 - ended
+}
+
+
+class SingleBet : SingleEvent {
+    
+    var choice = 0 // 0 - first, 1 - draw, 2 - second
+    var coefficient = 0
+    var betTime = Date()
+    var amount = 0
 }

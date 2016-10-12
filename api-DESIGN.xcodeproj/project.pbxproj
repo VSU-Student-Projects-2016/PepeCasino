@@ -12,7 +12,7 @@
 		AE15D3E81D9FD53B00ADAEC1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */; };
 		AE15D3EA1D9FD53B00ADAEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE15D3E91D9FD53B00ADAEC1 /* Assets.xcassets */; };
 		AE15D3ED1D9FD53B00ADAEC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE15D3EB1D9FD53B00ADAEC1 /* LaunchScreen.storyboard */; };
-		AE15D3F51D9FD5D600ADAEC1 /* bet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3F41D9FD5D600ADAEC1 /* bet.swift */; };
+		AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */; };
 		AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */; };
 		AE15D3FD1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +25,7 @@
 		AE15D3E91D9FD53B00ADAEC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE15D3EC1D9FD53B00ADAEC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE15D3EE1D9FD53B00ADAEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE15D3F41D9FD5D600ADAEC1 /* bet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bet.swift; sourceTree = "<group>"; };
+		AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAndBet.swift; sourceTree = "<group>"; };
 		AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewCell.swift; sourceTree = "<group>"; };
 		AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				AE15D3E21D9FD53B00ADAEC1 /* AppDelegate.swift */,
-				AE15D3F41D9FD5D600ADAEC1 /* bet.swift */,
+				AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */,
 				AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */,
 				84323D101DA45A24003D6A83 /* SingleEventViewController.swift */,
 				AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */,
@@ -147,7 +147,7 @@
 			files = (
 				AE15D3FD1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift in Sources */,
 				AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */,
-				AE15D3F51D9FD5D600ADAEC1 /* bet.swift in Sources */,
+				AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */,
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
 				AE15D3E31D9FD53B00ADAEC1 /* AppDelegate.swift in Sources */,
 			);
