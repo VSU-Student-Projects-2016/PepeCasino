@@ -46,23 +46,8 @@ class BetTableViewController: UITableViewController {
         let cellIdentifier = "SingleBetCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
         
-        let Bet  = bets[indexPath.row]
+        cell._bet  = bets[indexPath.row]
         
-        let str = Bet.completeTeamNames()
-        cell.lbTeamNames.text = str
-        cell.lbPlaced.text = cell.lbPlaced.text! + String(Bet.amount)
-        if Bet.isWon {
-            
-            cell.lbStatus.textColor = UIColor.green
-            cell.lbStatus.text = "WIN"
-            cell.lbPaid.text = cell.lbPaid.text! + String(Bet.amount * Bet.coefficient)
-            
-        }
-        else {
-            cell.lbStatus.textColor = UIColor.red
-            cell.lbStatus.text = "LOSE"
-            cell.lbPaid.text = cell.lbPaid.text! +  "0"
-        }
         //cell.lbStatus.text = String(Bet.isWon)
         
         return cell

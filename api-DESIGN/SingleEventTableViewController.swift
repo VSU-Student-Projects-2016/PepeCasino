@@ -47,10 +47,8 @@ class SingleEventTableViewController: UITableViewController {
         let cellIdentifier = "SingleEventCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
 
-        cell.Event  = events[indexPath.row]
-        
-        cell.EventInfo.text = cell.Event.completeTeamNames()
-        cell.EventTimeAndStatus.text = cell.Event.timeAsString()
+        // willset
+        cell._event  = events[indexPath.row]
         
         return cell
     }

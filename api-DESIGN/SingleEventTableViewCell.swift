@@ -12,7 +12,17 @@ class SingleEventTableViewCell: UITableViewCell {
 
     @IBOutlet var EventInfo: UILabel!
     @IBOutlet var EventTimeAndStatus: UILabel!
-    var Event = SingleEvent()
+    var _event = SingleEvent() {
+        didSet {
+            EventInfo.text = _event.completeTeamNames()
+            EventTimeAndStatus.text = _event.timeAsString()
+
+        }
+        
+        willSet {
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +32,7 @@ class SingleEventTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        EventInfo.text = Event.completeTeamNames()
-        EventTimeAndStatus.text = Event.timeAsString()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         //fatalError("init(coder:) has not been implemented")

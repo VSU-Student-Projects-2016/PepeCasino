@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HeZ-EY-eFW" id="vU5-zx-H6U">
-                                    <frame key="frameInset" width="375" height="64"/>
+                                    <frame key="frameInset" width="375" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s7-Ay-w5D">
@@ -78,7 +78,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="lbAmount" destination="eRh-KZ-Oo6" id="X8e-MA-KpM"/>
                                     <outlet property="lbPaid" destination="eRh-KZ-Oo6" id="BS9-yi-IXF"/>
                                     <outlet property="lbPlaced" destination="eeu-ta-uiN" id="Udb-2V-g5Y"/>
                                     <outlet property="lbStatus" destination="7s7-Ay-w5D" id="S1L-Sx-KK8"/>
