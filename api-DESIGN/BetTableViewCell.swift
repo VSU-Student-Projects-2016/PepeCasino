@@ -10,6 +10,7 @@ import UIKit
 
 class BetTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lbTime: UILabel!
     @IBOutlet var lbTeamNames: UILabel!
     @IBOutlet var lbStatus: UILabel!
     @IBOutlet var lbPlaced: UILabel!
@@ -19,6 +20,7 @@ class BetTableViewCell: UITableViewCell {
         didSet {
             let str = _bet.completeTeamNames()
             lbTeamNames.text = str
+            lbTime.text = stringFromTime(_time: _bet.time, format: "MM/dd")
             lbPlaced.text = lbPlaced.text! + String(_bet.amount)
             if _bet.isWon {
                 

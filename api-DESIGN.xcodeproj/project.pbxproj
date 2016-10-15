@@ -17,6 +17,7 @@
 		AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */; };
 		AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */; };
 		AE15D3FD1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */; };
+		AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA748A01DB25170000F1933 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAndBet.swift; sourceTree = "<group>"; };
 		AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewCell.swift; sourceTree = "<group>"; };
 		AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewController.swift; sourceTree = "<group>"; };
+		AEA748A01DB25170000F1933 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				84C78FF51DAE74F100972F0F /* BetTableViewCell.swift */,
 				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
 				AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */,
+				AEA748A01DB25170000F1933 /* SettingsViewController.swift */,
 				84323D101DA45A24003D6A83 /* SingleEventViewController.swift */,
 				AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */,
 				AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */,
@@ -158,6 +161,7 @@
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
 				84C78FF61DAE74F100972F0F /* BetTableViewCell.swift in Sources */,
 				AE15D3E31D9FD53B00ADAEC1 /* AppDelegate.swift in Sources */,
+				AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
