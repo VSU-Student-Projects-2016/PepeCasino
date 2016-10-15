@@ -14,9 +14,9 @@ class BetTableViewController: UITableViewController {
     var bets = [SingleBet]()
     
     func loadDSampleEvents() {
-        let bet1 = SingleBet(homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
-        let bet2 = SingleBet(homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
-        let bet3 = SingleBet(homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
+        let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
+        let bet2 = SingleBet(time : "2016-10-23 23:55", homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
+        let bet3 = SingleBet(time : "2015-12-12 10:25",homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
         bets.append(bet1)
         bets.append(bet2)
         bets.append(bet3)
