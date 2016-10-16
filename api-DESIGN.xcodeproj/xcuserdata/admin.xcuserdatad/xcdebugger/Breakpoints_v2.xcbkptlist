@@ -86,7 +86,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "api-DESIGN/SingleEventViewController.swift"
@@ -99,14 +99,14 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "api_DESIGN.SingleEventViewController.evStatus.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
                   moduleName = "api-DESIGN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Documents/PepeCasino/api-DESIGN/SingleEventViewController.swift"
-                  timestampString = "497971597.859601"
+                  timestampString = "498266818.582892"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
@@ -114,14 +114,14 @@
                   offsetFromSymbolStart = "42">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "api_DESIGN.SingleEventViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; api_DESIGN.SingleEventViewController"
                   moduleName = "api-DESIGN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Documents/PepeCasino/api-DESIGN/SingleEventViewController.swift"
-                  timestampString = "497971597.865508"
+                  timestampString = "498266818.588492"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
@@ -129,14 +129,14 @@
                   offsetFromSymbolStart = "70">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "api_DESIGN.SingleEventViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;api_DESIGN.SingleEventViewController&gt;"
                   moduleName = "api-DESIGN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Documents/PepeCasino/api-DESIGN/SingleEventViewController.swift"
-                  timestampString = "497971597.872024"
+                  timestampString = "498266818.592916"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"

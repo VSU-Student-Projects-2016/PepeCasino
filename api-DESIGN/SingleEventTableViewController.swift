@@ -1,4 +1,5 @@
 import UIKit
+import Alamofire
 
 class SingleEventTableViewController: UITableViewController {
 
@@ -6,7 +7,17 @@ class SingleEventTableViewController: UITableViewController {
     
     var events = [SingleEvent]()
     
-
+    func loadFromWeb() {
+        let key = "R0s5MDcyOTU6IWpvemVmMjAwMA=="
+        let url = "https:api.pinnaclesports.com/v1/odds?sportid=3"
+        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        //Alamofire.request(url,headers: headers).responseJSON(completionHandler: )
+        /*{ response in
+            if let data = response.data, let utf8str = String(data: data, encoding: .utf8) {
+                let text = utf8str
+            }*/
+        
+    }
     func loadSampleEvents() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -24,7 +35,7 @@ class SingleEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadFromWeb()
         loadSampleEvents()
     }
 
