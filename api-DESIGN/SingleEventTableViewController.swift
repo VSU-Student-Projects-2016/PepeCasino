@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class SingleEventTableViewController: UITableViewController {
 
@@ -8,14 +9,22 @@ class SingleEventTableViewController: UITableViewController {
     var events = [SingleEvent]()
     
     func loadFromWeb() {
-        let key = "R0s5MDcyOTU6IWpvemVmMjAwMA=="
-        let url = "https:api.pinnaclesports.com/v1/odds?sportid=3"
+        let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
-        //Alamofire.request(url,headers: headers).responseJSON(completionHandler: )
-        /*{ response in
-            if let data = response.data, let utf8str = String(data: data, encoding: .utf8) {
-                let text = utf8str
-            }*/
+        /*Alamofire.request(url,headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                print(json[0])
+            case .failure(let error):
+                print(error)
+            }
+        }
+        Alamofire.request(url,headers: headers).responseJSON { response in
+            let json = JSON(response.result)
+            debugPrint(json["last"])
+        }*/
         
     }
     func loadSampleEvents() {
