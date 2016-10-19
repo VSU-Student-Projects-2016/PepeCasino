@@ -9,22 +9,34 @@ class SingleEventTableViewController: UITableViewController {
     var events = [SingleEvent]()
     
     func loadFromWeb() {
+        let dateFormatter = DateFormatter()
+        var tmpevents = [SingleEvent]()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
-        /*Alamofire.request(url,headers: headers).validate().responseJSON { response in
+        Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
-                print(json[0])
+                for (ev,leagueJson) in json["league"] {
+                    for (index,eventsJson) in leagueJson["events"] {
+                            var coefficients : [Double] = [1.75, 1.26, 2.31]
+                            var teams = eventsJson["home"].stringValue + " - " + eventsJson["away"].stringValue
+                            var tmpstr = eventsJson["starts"].stringValue
+                            var c = tmpstr.characters
+                            var timei = c.index(c.startIndex, offsetBy: 11)..<c.index(c.endIndex, offsetBy: -4)
+                            var datei = c.index(c.startIndex, offsetBy: 0)..<c.index(c.endIndex, offsetBy: -10)
+                            var dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
+                            var time = dateFormatter.date(from: dstr! + " " + tstr!)
+                            let tmpevent = SingleEvent(homeTeamName: eventsJson["home"].stringValue, awayTeamName : eventsJson["away"].stringValue, time: time!, coeffs : coefficients)
+                            tmpevents += [tmpevent]
+                    }
+                }
             case .failure(let error):
                 print(error)
             }
         }
-        Alamofire.request(url,headers: headers).responseJSON { response in
-            let json = JSON(response.result)
-            debugPrint(json["last"])
-        }*/
+        events = tmpevents
         
     }
     func loadSampleEvents() {
@@ -44,8 +56,9 @@ class SingleEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromWeb()
+        //loadFromWeb()
         loadSampleEvents()
+        var integ = 10
     }
 
     override func didReceiveMemoryWarning() {

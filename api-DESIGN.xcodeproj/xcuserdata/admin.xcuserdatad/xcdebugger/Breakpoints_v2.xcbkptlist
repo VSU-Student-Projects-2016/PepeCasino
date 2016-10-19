@@ -153,12 +153,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "api-DESIGN/SingleEventTableViewController.swift"
-            timestampString = "498523623.207568"
+            timestampString = "498532310.592048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "loadFromWeb()"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
