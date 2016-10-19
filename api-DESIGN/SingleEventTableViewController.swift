@@ -10,7 +10,6 @@ class SingleEventTableViewController: UITableViewController {
     
     func loadFromWeb() {
         let dateFormatter = DateFormatter()
-        var tmpevents = [SingleEvent]()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
@@ -28,15 +27,15 @@ class SingleEventTableViewController: UITableViewController {
                             let dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
                             let time = dateFormatter.date(from: dstr! + " " + tstr!)
                             let tmpevent = SingleEvent(homeTeamName: eventsJson["home"].stringValue, awayTeamName : eventsJson["away"].stringValue, time: time!, coeffs : coefficients)
-                            tmpevents += [tmpevent]
+                            self.events += [tmpevent]
                     }
                 }
+                self.tableView.reloadData()
+                
             case .failure(let error):
                 print(error)
             }
-        }
-        events = tmpevents
-        
+        }		        
     }
     func loadSampleEvents() {
         let dateFormatter = DateFormatter()
@@ -55,9 +54,8 @@ class SingleEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadFromWeb()
-        loadSampleEvents()
-        var integ = 10
+        loadFromWeb()
+        //loadSampleEvents()
     }
 
     override func didReceiveMemoryWarning() {

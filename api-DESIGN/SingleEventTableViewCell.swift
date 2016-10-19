@@ -16,7 +16,6 @@ class SingleEventTableViewCell: UITableViewCell {
         didSet {
             EventInfo.text = _event.completeTeamNames()
             EventTimeAndStatus.text = _event.timeAsString()
-
         }
         
         willSet {
