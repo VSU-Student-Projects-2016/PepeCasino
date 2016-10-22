@@ -27,6 +27,7 @@
 		AE9A826D1DBB6A8200617C77 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE9A82681DBB6A7700617C77 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE9A826E1DBB6A8200617C77 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE9A82691DBB6A7700617C77 /* RealmSwift.framework */; };
 		AE9A826F1DBB6A8200617C77 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE9A82691DBB6A7700617C77 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */; };
 		AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA748A01DB25170000F1933 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +180,7 @@
 		AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewController.swift; sourceTree = "<group>"; };
 		AE9A82681DBB6A7700617C77 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		AE9A82691DBB6A7700617C77 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AEA748A01DB25170000F1933 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 				84C78FF51DAE74F100972F0F /* BetTableViewCell.swift */,
 				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
 				AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */,
+				AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */,
 				AEA748A01DB25170000F1933 /* SettingsViewController.swift */,
 				84323D101DA45A24003D6A83 /* SingleEventViewController.swift */,
 				AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */,
@@ -473,6 +476,7 @@
 				AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */,
 				AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */,
 				84C78FF41DAE74BA00972F0F /* BetTableViewController.swift in Sources */,
+				AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */,
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
 				84C78FF61DAE74F100972F0F /* BetTableViewCell.swift in Sources */,
 				AE15D3E31D9FD53B00ADAEC1 /* AppDelegate.swift in Sources */,

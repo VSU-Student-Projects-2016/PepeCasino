@@ -12,7 +12,7 @@ import RealmSwift
 
 
 class Balance : Object{
-    dynamic var amount = 0.0
+    dynamic var amount  = 0.0
 }
 class SingleEvent {
     
