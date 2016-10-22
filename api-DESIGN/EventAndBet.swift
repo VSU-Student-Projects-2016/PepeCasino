@@ -166,7 +166,9 @@ class SingleBet : Object {
     dynamic var homeTeamName = ""
     dynamic var awayTeamName = ""
     
-    dynamic var score = Array(repeating: 0, count: 2)
+    //dynamic var score = Array(repeating: 0, count: 2)
+    dynamic var firstScore = 0
+    dynamic var secondScore = 0
     dynamic var time = Date() //Start time
     dynamic var id = 0 //Match ID
     dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
@@ -200,7 +202,7 @@ class SingleBet : Object {
     
     func scoreAsString() -> String
     {
-        return String(score[0]) + ":" + String(score[1])
+        return String(firstScore) + ":" + String(firstScore)
     }
     
     
