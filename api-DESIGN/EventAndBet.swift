@@ -13,18 +13,8 @@ import RealmSwift
 
 class Balance : Object{
     dynamic var amount = 0.0
-    init (amount: Double)
-    {
-        self.amount = amount
-    }
-    
-    required init() {}
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
 }
-class SingleEvent : Object {
+class SingleEvent {
     
     init(homeTeamName: String, awayTeamName: String, time: Date, id: Int, league: Int, status: Int) {
         self.homeTeamName = homeTeamName
@@ -35,13 +25,7 @@ class SingleEvent : Object {
         self.time = time
         
     }
-    required init() {    }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        fatalError("init(realm:schema:) has not been implemented")
-    }
-    
-    
+    init() {    }
     
     
     var homeTeamName = ""
@@ -111,9 +95,9 @@ func stringFromTime(_time : Date) -> String
 }
 
 
-class SingleBet : SingleEvent {
+class SingleBet : Object {
     
-    override init() {
+    /*override init() {
         super.init()
     }
     
@@ -133,7 +117,13 @@ class SingleBet : SingleEvent {
         self.amount = amount
         self.coefficient = coefficient
         self.time = timeFromString(_time: time)
-    }
+    }*/
+    dynamic var score = Array(repeating: 0, count: 2)
+    dynamic var time = Date() //Start time
+    dynamic var id = 0 //Match ID
+    dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
+    dynamic var league = 0
+
     dynamic var choice = 0 // 0 - first, 1 - draw, 2 - second
     dynamic var coefficient = 0.0
     dynamic var betTime = Date()
