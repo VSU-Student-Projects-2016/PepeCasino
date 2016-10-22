@@ -143,13 +143,6 @@
 			remoteGlobalIDString = 2E4FEFDA19575BE100351305;
 			remoteInfo = "SwiftyJSON iOS";
 		};
-		AE9A82621DBB674100617C77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AE9A825E1DBB674000617C77 /* RealmPlugin.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2263AAB619B0A1E6007240D9;
-			remoteInfo = RealmPlugin;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -184,7 +177,6 @@
 		AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventAndBet.swift; sourceTree = "<group>"; };
 		AE15D3F81D9FE57100ADAEC1 /* SingleEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewCell.swift; sourceTree = "<group>"; };
 		AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewController.swift; sourceTree = "<group>"; };
-		AE9A825E1DBB674000617C77 /* RealmPlugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RealmPlugin.xcodeproj; path = "../../Downloads/realm-swift-2.0.2/plugin/RealmPlugin.xcodeproj"; sourceTree = "<group>"; };
 		AE9A82681DBB6A7700617C77 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		AE9A82691DBB6A7700617C77 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		AEA748A01DB25170000F1933 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +232,6 @@
 			children = (
 				AE9A82681DBB6A7700617C77 /* Realm.framework */,
 				AE9A82691DBB6A7700617C77 /* RealmSwift.framework */,
-				AE9A825E1DBB674000617C77 /* RealmPlugin.xcodeproj */,
 				84B02A701DB6D23B000A434E /* SwiftyJSON.xcodeproj */,
 				84B02A571DB6D234000A434E /* Alamofire.xcodeproj */,
 				AE15D3E11D9FD53B00ADAEC1 /* api-DESIGN */,
@@ -273,14 +264,6 @@
 				AE15D3EE1D9FD53B00ADAEC1 /* Info.plist */,
 			);
 			path = "api-DESIGN";
-			sourceTree = "<group>";
-		};
-		AE9A825F1DBB674000617C77 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AE9A82631DBB674100617C77 /* RealmPlugin.xcplugin */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,10 +321,6 @@
 				{
 					ProductGroup = 84B02A581DB6D234000A434E /* Products */;
 					ProjectRef = 84B02A571DB6D234000A434E /* Alamofire.xcodeproj */;
-				},
-				{
-					ProductGroup = AE9A825F1DBB674000617C77 /* Products */;
-					ProjectRef = AE9A825E1DBB674000617C77 /* RealmPlugin.xcodeproj */;
 				},
 				{
 					ProductGroup = 84B02A711DB6D23B000A434E /* Products */;
@@ -452,13 +431,6 @@
 			fileType = wrapper.cfbundle;
 			path = "SwiftyJSON tvOS Tests.xctest";
 			remoteRef = 84B02A861DB6D23C000A434E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AE9A82631DBB674100617C77 /* RealmPlugin.xcplugin */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RealmPlugin.xcplugin;
-			remoteRef = AE9A82621DBB674100617C77 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

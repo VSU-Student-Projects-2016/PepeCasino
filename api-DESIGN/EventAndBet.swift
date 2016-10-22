@@ -11,7 +11,20 @@ import RealmSwift
 
 
 
-class SingleEvent {
+class Balance : Object{
+    dynamic var amount = 0.0
+    init (amount: Double)
+    {
+        self.amount = amount
+    }
+    
+    required init() {}
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        fatalError("init(realm:schema:) has not been implemented")
+    }
+}
+class SingleEvent : Object {
     
     init(homeTeamName: String, awayTeamName: String, time: Date, id: Int, league: Int, status: Int) {
         self.homeTeamName = homeTeamName
@@ -22,7 +35,11 @@ class SingleEvent {
         self.time = time
         
     }
-    init() {    }
+    required init() {    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        fatalError("init(realm:schema:) has not been implemented")
+    }
     
     
     
