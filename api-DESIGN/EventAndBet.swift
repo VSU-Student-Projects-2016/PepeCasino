@@ -13,10 +13,12 @@ import RealmSwift
 
 class SingleEvent {
     
-    init(homeTeamName: String, awayTeamName: String, time: Date, coeffs : [Double]) {
+    init(homeTeamName: String, awayTeamName: String, time: Date, id: Int, league: Int, status: Int) {
         self.homeTeamName = homeTeamName
         self.awayTeamName = awayTeamName
-        self.coeffs = coeffs
+        self.id = id
+        self.league = league
+        self.status = status
         self.time = time
         
     }
@@ -55,11 +57,12 @@ class SingleEvent {
     
     
     
-    var coeffs = [Double]() //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
-    var score = Array(repeating: 0, count: 2)
-    var time = Date() //Start time
-    var id = 0 //Match ID
-    var status = 0 //0 - not started , 1 - live), 2 - ended
+    dynamic var coeffs = [Double]() //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
+    dynamic var score = Array(repeating: 0, count: 2)
+    dynamic var time = Date() //Start time
+    dynamic var id = 0 //Match ID
+    dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
+    dynamic var league = 0
 }
 
 
@@ -114,9 +117,9 @@ class SingleBet : SingleEvent {
         self.coefficient = coefficient
         self.time = timeFromString(_time: time)
     }
-    var choice = 0 // 0 - first, 1 - draw, 2 - second
-    var coefficient = 0.0
-    var betTime = Date()
-    var amount = 0.0
-    var isWon = false //0 - lost, 1 - won
+    dynamic var choice = 0 // 0 - first, 1 - draw, 2 - second
+    dynamic var coefficient = 0.0
+    dynamic var betTime = Date()
+    dynamic var amount = 0.0
+    dynamic var isWon = false //0 - lost, 1 - won
 }
