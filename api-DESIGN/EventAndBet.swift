@@ -38,8 +38,33 @@ class SingleEvent {
     dynamic var id = 0 //Match ID
     dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
     dynamic var league = 0
+
+
+func completeTeamNames() -> String
+{
+    return homeTeamName + " - " + awayTeamName
 }
 
+func timeAsString() -> String
+{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    return dateFormatter.string(from: time)
+}
+
+func timeAsString(format : String) -> String
+{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
+    return dateFormatter.string(from: time)
+}
+
+
+func scoreAsString() -> String
+{
+    return String(score[0]) + ":" + String(score[1])
+}
+}
 
 func timeFromString(_time : String) -> Date
 {
@@ -69,14 +94,14 @@ func stringFromTime(_time : Date) -> String
 }
 
 
-class SingleBet : Object {
+class SingleBet {
     
-    /*override init() {
-        super.init()
+    init() {
+    //    super.init()
     }
     
     init( homeTeamName: String, awayTeamName: String, isWon : Bool, amount : Double, coefficient : Double) {
-        super.init()
+        //super.init()
         self.homeTeamName = homeTeamName
         self.awayTeamName = awayTeamName
         self.isWon = isWon
@@ -84,14 +109,14 @@ class SingleBet : Object {
         self.coefficient = coefficient
     }
     init( time: String,  homeTeamName: String, awayTeamName: String, isWon : Bool, amount : Double, coefficient : Double) {
-        super.init()
+      //  super.init()
         self.homeTeamName = homeTeamName
         self.awayTeamName = awayTeamName
         self.isWon = isWon
         self.amount = amount
         self.coefficient = coefficient
         self.time = timeFromString(_time: time)
-    }*/
+    }
     
     
     func completeTeamNames() -> String

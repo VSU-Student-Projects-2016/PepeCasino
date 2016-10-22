@@ -13,9 +13,10 @@ class BetTableViewController: UITableViewController {
 
     
 
-    let realm = try! Realm()
-    lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
+    //let realm = try! Realm()
+    //lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
+    var bets = [SingleBet]()
     func loadDSampleEvents() {
        /* let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
         let bet2 = SingleBet(time : "2016-10-23 23:55", homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
