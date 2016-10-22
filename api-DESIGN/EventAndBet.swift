@@ -94,7 +94,7 @@ func stringFromTime(_time : Date) -> String
 }
 
 
-class SingleBet {
+/*class SingleBet {
     
     init() {
     //    super.init()
@@ -108,6 +108,7 @@ class SingleBet {
         self.amount = amount
         self.coefficient = coefficient
     }
+    
     init( time: String,  homeTeamName: String, awayTeamName: String, isWon : Bool, amount : Double, coefficient : Double) {
       //  super.init()
         self.homeTeamName = homeTeamName
@@ -159,4 +160,48 @@ class SingleBet {
     dynamic var betTime = Date()
     dynamic var amount = 0.0
     dynamic var isWon = false //0 - lost, 1 - won
+}*/
+class SingleBet : Object {
+    
+    dynamic var homeTeamName = ""
+    dynamic var awayTeamName = ""
+    
+    dynamic var score = Array(repeating: 0, count: 2)
+    dynamic var time = Date() //Start time
+    dynamic var id = 0 //Match ID
+    dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
+    dynamic var league = 0
+    
+    dynamic var choice = 0 // 0 - first, 1 - draw, 2 - second
+    dynamic var coefficient = 0.0
+    dynamic var betTime = Date()
+    dynamic var amount = 0.0
+    dynamic var isWon = false //0 - lost, 1 - won
+
+    func completeTeamNames() -> String
+    {
+        return homeTeamName + " - " + awayTeamName
+    }
+    
+    func timeAsString() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return dateFormatter.string(from: time)
+    }
+    
+    func timeAsString(format : String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: time)
+    }
+    
+    
+    func scoreAsString() -> String
+    {
+        return String(score[0]) + ":" + String(score[1])
+    }
+    
+    
 }

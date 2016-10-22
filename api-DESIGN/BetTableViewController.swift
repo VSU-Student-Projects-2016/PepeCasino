@@ -13,18 +13,36 @@ class BetTableViewController: UITableViewController {
 
     
 
-    //let realm = try! Realm()
-    //lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
+    let realm = try! Realm()
+    lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
-    var bets = [SingleBet]()
+    //var bets = [SingleBet]()
     func loadDSampleEvents() {
+        if bets.count == 0 { // 1
+            
+            try! realm.write() { // 2
+                
+                let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ] // 3
+                
+                for tmName in defaulTteamNames { // 4
+                    let newBet = SingleBet()
+                    newBet.homeTeamName = tmName
+                    newBet.awayTeamName = tmName
+                    newBet.amount = 200
+                    
+                    self.realm.add(newBet)
+                }
+            }
+            
+            bets = realm.objects(SingleBet) // 5
+        }
+    }
        /* let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
         let bet2 = SingleBet(time : "2016-10-23 23:55", homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
         let bet3 = SingleBet(time : "2015-12-12 10:25",homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
         bets.append(bet1)
         bets.append(bet2)
         bets.append(bet3)*/
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +69,7 @@ class BetTableViewController: UITableViewController {
         let cellIdentifier = "SingleBetCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
         
-        cell._bet  = bets[indexPath.row]
+        cell.fill(from: bets[indexPath.row])
         
         //cell.lbStatus.text = String(Bet.isWon)
         
