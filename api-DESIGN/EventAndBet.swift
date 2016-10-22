@@ -31,32 +31,6 @@ class SingleEvent {
     var homeTeamName = ""
     var awayTeamName = ""
     
-    func completeTeamNames() -> String
-    {
-        return homeTeamName + " - " + awayTeamName
-    }
-    
-    func timeAsString() -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        return dateFormatter.string(from: time)
-    }
-    
-    func timeAsString(format : String) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: time)
-    }
-
-    
-    func scoreAsString() -> String
-    {
-        return String(score[0]) + ":" + String(score[1])
-    }
-    
-    
     
     dynamic var coeffs = [Double]() //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
     dynamic var score = Array(repeating: 0, count: 2)
@@ -118,6 +92,37 @@ class SingleBet : Object {
         self.coefficient = coefficient
         self.time = timeFromString(_time: time)
     }*/
+    
+    
+    func completeTeamNames() -> String
+    {
+        return homeTeamName + " - " + awayTeamName
+    }
+    
+    func timeAsString() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return dateFormatter.string(from: time)
+    }
+    
+    func timeAsString(format : String) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: time)
+    }
+    
+    
+    func scoreAsString() -> String
+    {
+        return String(score[0]) + ":" + String(score[1])
+    }
+
+    
+    dynamic var homeTeamName = ""
+    dynamic var awayTeamName = ""
+
     dynamic var score = Array(repeating: 0, count: 2)
     dynamic var time = Date() //Start time
     dynamic var id = 0 //Match ID
