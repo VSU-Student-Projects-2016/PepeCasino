@@ -19,8 +19,9 @@ class SingleEventTableViewController: UITableViewController {
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
                     let coefficients : [Double] = [1.75, 1.26, 2.31]
-                    for (ev,eventsJson) in leagueJson["events"] {
-                            //print(eventsJson)
+                    for (_,eventsJson) in leagueJson["events"] {
+                            print(eventsJson)
+                            let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
                             let timei = c.index(c.startIndex, offsetBy: 11)..<c.index(c.endIndex, offsetBy: -4)
@@ -30,14 +31,11 @@ class SingleEventTableViewController: UITableViewController {
                             if eventsJson["home"].stringValue.contains("Corners") || eventsJson["home"].stringValue.contains("corners") {
                                 continue
                             }
-                            let tmpevent = SingleEvent(homeTeamName: eventsJson["home"].stringValue, awayTeamName : eventsJson["away"].stringValue, time: time!, coeffs : coefficients)
-                            print(tmpevent.completeTeamNames())
+                            let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, coeffs : coefficients)
                             self.events += [tmpevent]
                     }
                 }
-                for ev in self.events {
-                    print(ev.completeTeamNames())
-                }
+                self.events.sort( by: { $0.time < $1.time })
                 self.tableView.reloadData()
                 
             case .failure(let error):
