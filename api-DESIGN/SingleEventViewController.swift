@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SingleEventViewController: UIViewController {
 
@@ -16,19 +18,50 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var evTime: UILabel!
     @IBOutlet weak var evScore: UILabel!
 
-    var Event = SingleEvent()
+    var _event = SingleEvent()
+    func GetOdds() {
+        let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
+        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        Alamofire.request(url,headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     override func viewDidLoad() {
-        if Event.status == 0 {
+        let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
+        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        sleep(6)
+        Alamofire.request(url,headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                for (_,leagueJson) in json["league"] {
+                    for (_,eventsJson) in leagueJson["events"] {
+                        
+                    }
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+        if _event.status == 0 {
             evStatus.text = "Event hasn't started yet" }
         else
-            if Event.status == 1 {
+            if _event.status == 1 {
                 evStatus.text = "LIVE!" }
             else {
                 evStatus.text = "The event is over"}
         
-        evTeams.text = Event.completeTeamNames()
-        evTime.text = Event.timeAsString()
-        evScore.text = Event.scoreAsString()
+        evTeams.text = _event.completeTeamNames()
+        evTime.text = _event.timeAsString()
+        evScore.text = _event.scoreAsString()
         
         super.viewDidLoad()
 
