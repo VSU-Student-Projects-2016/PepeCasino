@@ -17,6 +17,9 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var evTeams: UILabel!
     @IBOutlet weak var evTime: UILabel!
     @IBOutlet weak var evScore: UILabel!
+    @IBOutlet weak var firstCoeff: UIButton!
+    @IBOutlet weak var drawCoeff: UIButton!
+    @IBOutlet weak var secondCoeff: UIButton!
 
     var _event = SingleEvent()
     func GetOdds() {
@@ -34,7 +37,7 @@ class SingleEventViewController: UIViewController {
         }
     }
     override func viewDidLoad() {
-        let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
+        let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         sleep(6)
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
@@ -62,6 +65,10 @@ class SingleEventViewController: UIViewController {
         evTeams.text = _event.completeTeamNames()
         evTime.text = _event.timeAsString()
         evScore.text = _event.scoreAsString()
+        firstCoeff.setTitle(String(_event.coeffs[0]), for: UIControlState.normal)
+        drawCoeff.setTitle(String(_event.coeffs[1]), for : UIControlState.normal)
+        secondCoeff.setTitle(String(_event.coeffs[2]), for: UIControlState.normal)
+        
         
         super.viewDidLoad()
 

@@ -32,7 +32,7 @@ class SingleEvent {
     var awayTeamName = ""
     
     
-    dynamic var coeffs = [Double]() //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
+    dynamic var coeffs = Array(repeating: 0.0, count: 3) //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
     dynamic var score = Array(repeating: 0, count: 2)
     dynamic var time = Date() //Start time
     dynamic var id = 0 //Match ID
