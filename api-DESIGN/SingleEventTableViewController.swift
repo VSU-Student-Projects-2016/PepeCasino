@@ -18,17 +18,25 @@ class SingleEventTableViewController: UITableViewController {
             case .success(let value):
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
-                    for (_,eventsJson) in leagueJson["events"] {
-                            let coefficients : [Double] = [1.75, 1.26, 2.31]
+                    let coefficients : [Double] = [1.75, 1.26, 2.31]
+                    for (ev,eventsJson) in leagueJson["events"] {
+                            //print(eventsJson)
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
                             let timei = c.index(c.startIndex, offsetBy: 11)..<c.index(c.endIndex, offsetBy: -4)
                             let datei = c.index(c.startIndex, offsetBy: 0)..<c.index(c.endIndex, offsetBy: -10)
                             let dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
                             let time = dateFormatter.date(from: dstr! + " " + tstr!)
+                            if eventsJson["home"].stringValue.contains("Corners") || eventsJson["home"].stringValue.contains("corners") {
+                                continue
+                            }
                             let tmpevent = SingleEvent(homeTeamName: eventsJson["home"].stringValue, awayTeamName : eventsJson["away"].stringValue, time: time!, coeffs : coefficients)
+                            print(tmpevent.completeTeamNames())
                             self.events += [tmpevent]
                     }
+                }
+                for ev in self.events {
+                    print(ev.completeTeamNames())
                 }
                 self.tableView.reloadData()
                 
