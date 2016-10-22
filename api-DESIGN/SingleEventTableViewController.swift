@@ -18,20 +18,22 @@ class SingleEventTableViewController: UITableViewController {
             case .success(let value):
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
-                    let coefficients : [Double] = [1.75, 1.26, 2.31]
+                    let lg = leagueJson["league"].intValue
                     for (_,eventsJson) in leagueJson["events"] {
                             print(eventsJson)
                             let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
+                            let event_id = eventsJson["id"].intValue
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
                             let timei = c.index(c.startIndex, offsetBy: 11)..<c.index(c.endIndex, offsetBy: -4)
                             let datei = c.index(c.startIndex, offsetBy: 0)..<c.index(c.endIndex, offsetBy: -10)
                             let dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
                             let time = dateFormatter.date(from: dstr! + " " + tstr!)
-                            if eventsJson["home"].stringValue.contains("Corners") || eventsJson["home"].stringValue.contains("corners") {
+                            let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
+                            if home_name.contains("Corners") || away_name.contains("corners") || events_filtered.count > 0 {
                                 continue
                             }
-                            let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, coeffs : coefficients)
+                            let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, id: event_id, league: lg, status: 0)
                             self.events += [tmpevent]
                     }
                 }
@@ -44,7 +46,7 @@ class SingleEventTableViewController: UITableViewController {
         }		        
     }
     func loadSampleEvents() {
-        let dateFormatter = DateFormatter()
+        /*let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
         var EventDate = dateFormatter.date(from: "2016-10-04 12:30")
@@ -55,7 +57,7 @@ class SingleEventTableViewController: UITableViewController {
 
         let Event2 = SingleEvent(homeTeamName: "Зенит", awayTeamName : "Амкар", time: EventDate!, coeffs : coefficients)
         
-        events += [Event1, Event2]
+        events += [Event1, Event2]*/
     }
     
     override func viewDidLoad() {
