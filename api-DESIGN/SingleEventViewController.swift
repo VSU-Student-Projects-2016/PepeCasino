@@ -22,33 +22,15 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var secondCoeff: UIButton!
 
     var _event = SingleEvent()
-    func GetOdds() {
-        let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
-        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
-        Alamofire.request(url,headers: headers).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print(json)
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
     override func viewDidLoad() {
-        let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueIds=" + String(_event.league) + "&oddsFormat=DECIMAL"
+        let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         sleep(6)
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                for (_,leagueJson) in json["league"] {
-                    for (_,eventsJson) in leagueJson["events"] {
-                        
-                    }
-                }
+                //print(json)
                 
             case .failure(let error):
                 print(error)

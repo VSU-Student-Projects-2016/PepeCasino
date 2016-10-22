@@ -20,7 +20,6 @@ class SingleEventTableViewController: UITableViewController {
                 for (_,leagueJson) in json["league"] {
                     let lg = leagueJson["id"].intValue
                     for (_,eventsJson) in leagueJson["events"] {
-                            print(eventsJson)
                             let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
                             let event_id = Int(eventsJson["id"].stringValue)
                             var tmpstr = eventsJson["starts"].stringValue
