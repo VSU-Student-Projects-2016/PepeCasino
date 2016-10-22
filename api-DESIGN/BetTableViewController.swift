@@ -34,6 +34,8 @@ class BetTableViewController: UITableViewController {
                 }
             }
             
+            
+            
             bets = realm.objects(SingleBet) // 5
         }
     }
