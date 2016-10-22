@@ -18,11 +18,11 @@ class SingleEventTableViewController: UITableViewController {
             case .success(let value):
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
-                    let lg = leagueJson["league"].intValue
+                    let lg = leagueJson["id"].intValue
                     for (_,eventsJson) in leagueJson["events"] {
                             print(eventsJson)
                             let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
-                            let event_id = eventsJson["id"].intValue
+                            let event_id = Int(eventsJson["id"].stringValue)
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
                             let timei = c.index(c.startIndex, offsetBy: 11)..<c.index(c.endIndex, offsetBy: -4)
@@ -33,7 +33,7 @@ class SingleEventTableViewController: UITableViewController {
                             if home_name.contains("Corners") || away_name.contains("corners") || events_filtered.count > 0 {
                                 continue
                             }
-                            let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, id: event_id, league: lg, status: 0)
+                            let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, id: event_id!, league: lg, status: 0)
                             self.events += [tmpevent]
                     }
                 }
@@ -94,7 +94,7 @@ class SingleEventTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
         let path = self.tableView.indexPathForSelectedRow?.row
-        DestViewController.Event = events[path!]
+        DestViewController._event = events[path!]
     }
     /*
     // Override to support conditional editing of the table view.
