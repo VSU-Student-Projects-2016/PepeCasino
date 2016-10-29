@@ -10,6 +10,10 @@ class SingleEventTableViewController: UITableViewController {
     
     func loadFromWeb() {
         let dateFormatter = DateFormatter()
+        var secondsFromGMT: Int { return NSTimeZone.local.secondsFromGMT() }
+        let curr_time = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: curr_time), minute = calendar.component(.minute, from: curr_time), day = calendar.component(.day, from: curr_time), month = calendar.component(.month, from: curr_time)
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
@@ -28,6 +32,11 @@ class SingleEventTableViewController: UITableViewController {
                             let datei = c.index(c.startIndex, offsetBy: 0)..<c.index(c.endIndex, offsetBy: -10)
                             let dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
                             let time = dateFormatter.date(from: dstr! + " " + tstr!)
+                            let event_hour = calendar.component(.hour, from: time!), event_minute = calendar.component(.minute, from: time!), event_day = calendar.component(.day, from: time!), event_month = calendar.component(.month, from: time!)
+                            if (minute >= event_minute && hour >= event_hour) || day > event_day || month > event_month || day == event_day + 1 || month == event_month + 1
+                            {
+                                continue
+                            }
                             let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
                             if home_name.contains("Corners") || away_name.contains("corners") || events_filtered.count > 0 {
                                 continue
