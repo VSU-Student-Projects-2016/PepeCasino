@@ -5,7 +5,10 @@ import SwiftyJSON
 class SingleEventTableViewController: UITableViewController {
 
     
+    @IBOutlet weak var activityInd: UIActivityIndicatorView!
     
+    @IBOutlet weak var loadingView: UIView!
+
     var events = [SingleEvent]()
     
     func loadFromWeb() {
@@ -17,9 +20,14 @@ class SingleEventTableViewController: UITableViewController {
         let hour = calendar.component(.hour, from: curr_time), minute = calendar.component(.minute, from: curr_time), day = calendar.component(.day, from: curr_time), month = calendar.component(.month, from: curr_time)
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        loadingView.isHidden = false
+        activityInd.startAnimating()
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
+                self.loadingView.isHidden = true
+                self.activityInd.stopAnimating()
+
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
                     let lg = leagueJson["id"].intValue
@@ -49,6 +57,9 @@ class SingleEventTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 
             case .failure(let error):
+                self.loadingView.isHidden = true
+                self.activityInd.stopAnimating()
+
                 print(error)
             }
         }		        
@@ -102,7 +113,13 @@ class SingleEventTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
         let path = self.tableView.indexPathForSelectedRow?.row
-        DestViewController._event = events[path!]
+        let sendingEvent = events[path!]
+        
+	
+            //self.tableView.isHidden = true
+            //self.loadingView.isHidden = false
+        DestViewController._event = sendingEvent
+        //DestViewController._event = sendingEvent//events[path!]
     }
     /*
     // Override to support conditional editing of the table view.

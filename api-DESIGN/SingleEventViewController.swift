@@ -20,22 +20,32 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var firstCoeff: UIButton!
     @IBOutlet weak var drawCoeff: UIButton!
     @IBOutlet weak var secondCoeff: UIButton!
-
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var actind: UIActivityIndicatorView!
+    
     var _event = SingleEvent()
     override func viewDidLoad() {
         let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
-        sleep(6)
-        Alamofire.request(url,headers: headers).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                //print(json)
-                
-            case .failure(let error):
-                print(error)
+        loadingView.isHidden = false
+        actind.startAnimating()
+        DispatchQueue.global().async {
+            sleep(6)
+            Alamofire.request(url,headers: headers).validate().responseJSON { response in
+                switch response.result {
+                    
+                case .success(let value):
+                    self.loadingView.isHidden = true
+                    let json = JSON(value)
+                    //print(json)
+                    
+                case .failure(let error):
+                    self.loadingView.isHidden = true
+                    print(error)
+                }
             }
         }
+        
         if _event.status == 0 {
             evStatus.text = "Event hasn't started yet" }
         else

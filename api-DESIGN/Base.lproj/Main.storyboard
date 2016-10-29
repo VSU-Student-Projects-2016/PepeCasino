@@ -139,6 +139,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="fz7-xJ-Yoi">
+                            <rect key="frame" x="0.0" y="162" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wFU-v6-gcp">
+                                    <frame key="frameInset" minX="177" minY="12" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleEventCell" id="KdP-IC-J27" customClass="SingleEventTableViewCell" customModule="api_DESIGN" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="70"/>
@@ -178,6 +189,10 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Events" id="jtL-BR-mNV"/>
                     <navigationItem key="navigationItem" title="Balance" id="9Me-yD-NRd"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="activityInd" destination="wFU-v6-gcp" id="PPu-47-xxm"/>
+                        <outlet property="loadingView" destination="fz7-xJ-Yoi" id="qev-Jv-o7F"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZX-Lc-rkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -271,18 +286,41 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exG-9n-7Cd">
+                                <frame key="frameInset" minX="7" minY="99" width="359" height="511"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FLx-7k-jCm">
+                                        <frame key="frameInset" minX="169" minY="245" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4VZ-HE-7vU">
+                                <frame key="frameInset" minY="62" width="375" height="556"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4VZ-HE-7vU"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="One bet" id="1aY-PX-0p7"/>
                     <connections>
+                        <outlet property="actind" destination="FLx-7k-jCm" id="6Pa-DQ-meu"/>
                         <outlet property="drawCoeff" destination="jJz-8A-izZ" id="g5D-qY-ut4"/>
                         <outlet property="evScore" destination="6Xb-MH-SiI" id="dSK-fV-Cbd"/>
                         <outlet property="evStatus" destination="763-BJ-sd7" id="FMu-Gh-wHo"/>
                         <outlet property="evTeams" destination="cXY-yp-mfN" id="OSm-v0-K5s"/>
                         <outlet property="evTime" destination="kPZ-cd-B2V" id="PmK-Qk-s9o"/>
                         <outlet property="firstCoeff" destination="fUz-5P-ks4" id="ywc-0n-3Ym"/>
+                        <outlet property="loadingView" destination="exG-9n-7Cd" id="NyW-cc-EKh"/>
                         <outlet property="secondCoeff" destination="0bk-rC-efN" id="ngP-8U-p0T"/>
                     </connections>
                 </viewController>
