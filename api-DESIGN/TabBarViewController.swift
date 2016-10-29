@@ -15,8 +15,20 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (realm.objects(Balance).count != 0) {
+        if (realm.objects(Balance).count == 0)
+        {
+            try! realm.write() {
+                let new_bal = Balance()
+                new_bal.amount = 1000.0;
+                self.realm.add(new_bal)
+            }
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + "$"
+
+        }
+        else
+        {
+            self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + "$"
+            
         }
     }
 
