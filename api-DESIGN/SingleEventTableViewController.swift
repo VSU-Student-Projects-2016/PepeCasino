@@ -10,11 +10,11 @@ class SingleEventTableViewController: UITableViewController {
     
     func loadFromWeb() {
         let dateFormatter = DateFormatter()
-        var secondsFromGMT: Int { return NSTimeZone.local.secondsFromGMT() }
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: -10800)
         let curr_time = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: curr_time), minute = calendar.component(.minute, from: curr_time), day = calendar.component(.day, from: curr_time), month = calendar.component(.month, from: curr_time)
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
