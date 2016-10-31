@@ -14,7 +14,7 @@ class SingleEventTableViewController: UITableViewController {
     func loadFromWeb() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: -10800)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
         let curr_time = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: curr_time), minute = calendar.component(.minute, from: curr_time), day = calendar.component(.day, from: curr_time), month = calendar.component(.month, from: curr_time)
@@ -33,6 +33,9 @@ class SingleEventTableViewController: UITableViewController {
                     let lg = leagueJson["id"].intValue
                     for (_,eventsJson) in leagueJson["events"] {
                             let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
+                            if home_name.contains(("Bogota")){
+                                print(eventsJson)
+                            }
                             let event_id = Int(eventsJson["id"].stringValue)
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
@@ -46,7 +49,7 @@ class SingleEventTableViewController: UITableViewController {
                                 continue
                             }
                             let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
-                            if home_name.contains("Corners") || away_name.contains("corners") || events_filtered.count > 0 {
+                            if home_name.contains("Home Teams") || away_name.contains("Home Teams") || home_name.contains("PEN") || away_name.contains("PEN") || home_name.contains("Bookings") || away_name.contains("Bookings") || home_name.contains("Corners") || away_name.contains("Corners") || events_filtered.count > 0 {
                                 continue
                             }
                             let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, id: event_id!, league: lg, status: 0)

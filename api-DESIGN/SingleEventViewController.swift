@@ -37,8 +37,20 @@ class SingleEventViewController: UIViewController {
                 case .success(let value):
                     self.loadingView.isHidden = true
                     let json = JSON(value)
-                    //print(json)
-                    
+                    var i: Int = 0, periods_num: Int = 0
+                    print(json)
+                    while json["leagues"][0]["events"][i]["id"].intValue != self._event.id {
+                        i += 1
+                    }
+                    if json["leagues"][0]["events"][i]["periods"][0]["moneyline"] == nil {
+                        periods_num = 1
+                    }
+                    self._event.coeffs[0] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["home"].stringValue)!
+                    self._event.coeffs[1] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["draw"].stringValue)!
+                    self._event.coeffs[2] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["away"].stringValue)!
+                    self.firstCoeff.setTitle(String(self._event.coeffs[0]), for: UIControlState.normal)
+                    self.drawCoeff.setTitle(String(self._event.coeffs[1]), for : UIControlState.normal)
+                    self.secondCoeff.setTitle(String(self._event.coeffs[2]), for: UIControlState.normal)
                 case .failure(let error):
                     self.loadingView.isHidden = true
                     print(error)
@@ -57,13 +69,9 @@ class SingleEventViewController: UIViewController {
         evTeams.text = _event.completeTeamNames()
         evTime.text = _event.timeAsString()
         evScore.text = _event.scoreAsString()
-        firstCoeff.setTitle(String(_event.coeffs[0]), for: UIControlState.normal)
-        drawCoeff.setTitle(String(_event.coeffs[1]), for : UIControlState.normal)
-        secondCoeff.setTitle(String(_event.coeffs[2]), for: UIControlState.normal)
-        
-        
         super.viewDidLoad()
-
+        
+        
         
         // Do any additional setup after loading the view.
     }
