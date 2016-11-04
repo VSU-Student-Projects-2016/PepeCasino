@@ -42,17 +42,23 @@ class BetTableViewCell: UITableViewCell {
             lbTeamNames.text = str
             lbTime.text = stringFromTime(_time: _bet.time, format: "MM/dd")
             lbPlaced.text = lbPlaced.text! + String(_bet.amount)
-            if _bet.isWon {
-                
+            switch _bet.status {
+            case 0:
+                lbStatus.text = "Not started"
+                lbPaid.text = lbPaid.text! +  "..."
+
+            case 1:
+                lbStatus.textColor = UIColor.red
+                lbStatus.text = "LOSE"
+                lbPaid.text = lbPaid.text! +  "0"
+
+            case 2:
                 lbStatus.textColor = UIColor.green
                 lbStatus.text = "WIN"
                 lbPaid.text = lbPaid.text! + String(_bet.amount * _bet.coefficient)
                 
-            }
-            else {
-                lbStatus.textColor = UIColor.red
-                lbStatus.text = "LOSE"
-                lbPaid.text = lbPaid.text! +  "0"
+            default:
+                print("kuk")
             }
     }
     

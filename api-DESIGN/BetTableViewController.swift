@@ -29,7 +29,7 @@ class BetTableViewController: UITableViewController {
                     newBet.homeTeamName = tmName
                     newBet.awayTeamName = tmName
                     newBet.amount = 200
-                    
+                    newBet.status = 1;
                     self.realm.add(newBet)
                 }
             }

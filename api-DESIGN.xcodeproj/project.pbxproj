@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84323D101DA45A24003D6A83 /* SingleEventViewController.swift */; };
+		84481E041DCBF974008CACE3 /* RealmHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84481E031DCBF974008CACE3 /* RealmHandler.swift */; };
 		84B02A881DB6D246000A434E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B02A631DB6D234000A434E /* Alamofire.framework */; };
 		84B02A891DB6D246000A434E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84B02A631DB6D234000A434E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84B02A8C1DB6D24B000A434E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B02A7B1DB6D23C000A434E /* SwiftyJSON.framework */; };
@@ -165,6 +166,7 @@
 
 /* Begin PBXFileReference section */
 		84323D101DA45A24003D6A83 /* SingleEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventViewController.swift; sourceTree = "<group>"; };
+		84481E031DCBF974008CACE3 /* RealmHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHandler.swift; sourceTree = "<group>"; };
 		84B02A571DB6D234000A434E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = "<group>"; };
 		84B02A701DB6D23B000A434E /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = "SwiftyJSON-master/SwiftyJSON.xcodeproj"; sourceTree = "<group>"; };
 		84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetTableViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				AE15D3FC1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift */,
 				AE15D3E91D9FD53B00ADAEC1 /* Assets.xcassets */,
 				AE15D3EB1D9FD53B00ADAEC1 /* LaunchScreen.storyboard */,
+				84481E031DCBF974008CACE3 /* RealmHandler.swift */,
 				AE15D3EE1D9FD53B00ADAEC1 /* Info.plist */,
 			);
 			path = "api-DESIGN";
@@ -478,6 +481,7 @@
 				84C78FF41DAE74BA00972F0F /* BetTableViewController.swift in Sources */,
 				AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */,
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
+				84481E041DCBF974008CACE3 /* RealmHandler.swift in Sources */,
 				84C78FF61DAE74F100972F0F /* BetTableViewCell.swift in Sources */,
 				AE15D3E31D9FD53B00ADAEC1 /* AppDelegate.swift in Sources */,
 				AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */,

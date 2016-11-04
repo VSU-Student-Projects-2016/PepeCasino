@@ -178,7 +178,7 @@ class SingleBet : Object {
     dynamic var coefficient = 0.0
     dynamic var betTime = Date()
     dynamic var amount = 0.0
-    dynamic var isWon = false //0 - lost, 1 - won
+    //dynamic var isWon = 0 //0 - lost, 1 - won
 
     func completeTeamNames() -> String
     {

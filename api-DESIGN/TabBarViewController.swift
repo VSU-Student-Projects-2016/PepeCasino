@@ -11,23 +11,23 @@ import RealmSwift
 
 class TabBarViewController: UITabBarController {
 
-    let realm = try! Realm()
+    let realmm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (realm.objects(Balance).count == 0)
+        if (realmm.objects(Balance).count == 0)
         {
-            try! realm.write() {
+            try! realmm.write() {
                 let new_bal = Balance()
                 new_bal.amount = 1000.0;
-                self.realm.add(new_bal)
+                self.realmm.add(new_bal)
             }
-            self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + "$"
+            self.navigationItem.title = "Balance: " + String(realmm.objects(Balance)[0].amount) + " PPS"
 
         }
         else
         {
-            self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + "$"
+            self.navigationItem.title = "Balance: " + String(realmm.objects(Balance)[0].amount) + " PPS"
             
         }
     }

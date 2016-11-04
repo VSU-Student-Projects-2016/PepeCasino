@@ -1,4 +1,4 @@
-//
+	//
 //  SingleEventViewController.swift
 //  api-DESIGN
 //
@@ -9,8 +9,12 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
+import RealmSwift
+    
 class SingleEventViewController: UIViewController {
+
+    
+    let realm = try! Realm()
 
     
     @IBOutlet weak var evStatus: UILabel!
@@ -22,7 +26,16 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var secondCoeff: UIButton!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var actind: UIActivityIndicatorView!
+    @IBOutlet weak var errView: UIView!
+    @IBOutlet weak var betDescr: UILabel!
+    @IBOutlet weak var betAmount: UITextField!
+    @IBOutlet weak var betTeam: UILabel!
+    @IBOutlet weak var betEstWin: UILabel!
+    @IBOutlet weak var betConfirm: UIButton!
+    @IBOutlet weak var betErrorAmount: UILabel!
     
+    
+    var coeff = Double()
     var _event = SingleEvent()
     override func viewDidLoad() {
         let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
@@ -51,7 +64,10 @@ class SingleEventViewController: UIViewController {
                     self.firstCoeff.setTitle(String(self._event.coeffs[0]), for: UIControlState.normal)
                     self.drawCoeff.setTitle(String(self._event.coeffs[1]), for : UIControlState.normal)
                     self.secondCoeff.setTitle(String(self._event.coeffs[2]), for: UIControlState.normal)
+                    self.reloadInputViews();
+                    
                 case .failure(let error):
+                    self.errView.isHidden = false
                     self.loadingView.isHidden = true
                     print(error)
                 }
@@ -94,6 +110,79 @@ class SingleEventViewController: UIViewController {
     @IBAction func cancel(_ sender: AnyObject) {
         //dismissViewControllerAnimated(true, completion: nil)
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func HideButtons(isHid: Bool)
+    {
+        betTeam.isHidden = isHid
+        betDescr.isHidden = isHid
+        betAmount.isHidden = isHid
+        betEstWin.isHidden = isHid
+        betConfirm.isHidden = isHid
+        
+    }
+    @IBAction func amountTextChanged(_ sender: AnyObject) {
+        if (betAmount.text! != "")
+        {
+            betEstWin.text! = "Your estimated win: " + String(Double(betAmount.text!)!*coeff)
+        }
+    }
+
+    @IBAction func placeBetAct(_ sender: AnyObject) {
+        switch sender.tag {
+        case 0:
+            betTeam.text! = "On the " +  _event.homeTeamName
+            coeff = _event.coeffs[0]
+            betEstWin.text! = "Your estimate win: 0"
+        case 1:
+            betTeam.text! = "On draw"
+            coeff = _event.coeffs[1]
+            betEstWin.text! = "Your estimate win: 0"
+        case 2:
+            betTeam.text! = "On the " + _event.awayTeamName
+            coeff = _event.coeffs[2]
+            betEstWin.text! = "Your estimate win: 0"
+        default:
+            print("kuk")
+        }
+        HideButtons(isHid: false)
+
+        
+    }
+    @IBAction func placeBetConfirm(_ sender: AnyObject) {
+        if (realm.objects(Balance)[0].amount < Double(betAmount.text!)!)
+        {
+            betErrorAmount.isHidden = false
+        }
+        else
+        {
+            betErrorAmount.isHidden = true
+            let alert = UIAlertController(title: "Bet placement", message: "Are you sure to place this bet?", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:placeBetHandler))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+
+            self.present(alert, animated:true, completion:nil)
+        }
+    }
+    func placeBetHandler(alert: UIAlertAction){
+        //print("You tapped: \(alert.title)")
+        let amount = Double(betAmount.text!)!
+        try! realm.write() { // 2
+                
+            let newBet = SingleBet()
+            newBet.homeTeamName = _event.homeTeamName
+            newBet.awayTeamName = _event.awayTeamName
+            newBet.time = _event.time
+            newBet.status = 0
+            newBet.amount = amount
+            newBet.coefficient = coeff
+            self.realm.add(newBet)
+            
+            realm.objects(Balance)[0].amount -= amount
+
+        }
+        
     }
 
 }
