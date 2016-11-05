@@ -32,6 +32,10 @@ class TabBarViewController: UITabBarController {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+        self.navigationItem.title = "Balance: " + String(realmm.objects(Balance)[0].amount) + " PPS"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
