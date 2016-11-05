@@ -5,13 +5,11 @@ import SwiftyJSON
 class SingleEventTableViewController: UITableViewController {
 
     
-    @IBOutlet weak var activityInd: UIActivityIndicatorView!
-    
-    @IBOutlet weak var loadingView: UIView!
 
     var events = [SingleEvent]()
     
     func loadFromWeb() {
+        self.events.removeAll()
         let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
@@ -21,14 +19,9 @@ class SingleEventTableViewController: UITableViewController {
         let hour = calendar.component(.hour, from: curr_time), minute = calendar.component(.minute, from: curr_time), day = calendar.component(.day, from: curr_time), month = calendar.component(.month, from: curr_time)
         let url = "https://api.pinnaclesports.com/v1/fixtures?sportid=29"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
-        loadingView.isHidden = false
-        activityInd.startAnimating()
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                self.loadingView.isHidden = true
-                self.activityInd.stopAnimating()
-
                 let json = JSON(value)
                 for (_,leagueJson) in json["league"] {
                     let lg = leagueJson["id"].intValue
@@ -68,12 +61,10 @@ class SingleEventTableViewController: UITableViewController {
                     }
                 }
                 self.events.sort( by: { $0.time < $1.time })
+                self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
                 
             case .failure(let error):
-                self.loadingView.isHidden = true
-                self.activityInd.stopAnimating()
-
                 print(error)
             }
         }		        
@@ -95,9 +86,23 @@ class SingleEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFromWeb()
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
+        refreshControl?.addTarget(self, action: "RefreshData", for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl!) // not required when using UITableViewController
+        
+        //loadFromWeb()
+        RefreshData()
         //loadSampleEvents()
     }
+    func RefreshData() {
+        DispatchQueue.global().async {
+            //sleep(5)
+            self.loadFromWeb()
+        }
+        self.tableView.reloadData()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
