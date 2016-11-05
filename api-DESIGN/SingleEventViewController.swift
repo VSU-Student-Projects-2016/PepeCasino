@@ -52,9 +52,13 @@ class SingleEventViewController: UIViewController {
                 case .success(let value):
                     self.loadingView.isHidden = true
                     let json = JSON(value)
-                    var i: Int = 0, periods_num: Int = 0
+                    var i: Int = 0, periods_num: Int = 0, curr_id: Int = 0
                     print(json)
-                    while json["leagues"][0]["events"][i]["id"].intValue != self._event.id {
+                    while true {
+                        while curr_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue != self._event.id[curr_id] {
+                            curr_id += 1
+                        }
+                        curr_id = 0
                         i += 1
                     }
                     if json["leagues"][0]["events"][i]["periods"][0]["moneyline"] == nil {

@@ -52,6 +52,9 @@ class SingleEventTableViewController: UITableViewController {
                             }
                             else {
                                 let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
+                                if events_filtered.count > 0 {
+                                    let index_of_event = self.events.index(where: { $0.homeTeamName == home_name && $0.awayTeamName == away_name })
+                                }
                                 if home_name.contains("Home Teams") || away_name.contains("Home Teams") || home_name.contains("PEN") || away_name.contains("PEN") || home_name.contains("Bookings") || away_name.contains("Bookings") || home_name.contains("Corners") || away_name.contains("Corners") || event_status != "O" || events_filtered.count > 0 {
                                     continue
                                 }
