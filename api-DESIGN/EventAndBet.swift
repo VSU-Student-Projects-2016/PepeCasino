@@ -34,7 +34,7 @@ class SingleEvent {
     
     dynamic var coeffs = Array(repeating: 0.0, count: 3) //Coefficients: [0] - on a first team, [1] - on draw, [2] - on a second team
     dynamic var score = Array(repeating: 0, count: 2)
-    dynamic var id = Array(repeating: 0, count: 20)
+    dynamic var id = Array<Int>()
     dynamic var time = Date() //Start time
     //var id = 0 //Match ID
     dynamic var status = 0 //0 - not started , 1 - live), 2 - ended
