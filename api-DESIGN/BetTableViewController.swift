@@ -36,7 +36,7 @@ class BetTableViewController: UITableViewController {
             
             
             
-            bets = realm.objects(SingleBet) // 5
+            bets = realm.objects(SingleBet).sorted(byProperty: "time") // 5
         }
     }
        /* let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
