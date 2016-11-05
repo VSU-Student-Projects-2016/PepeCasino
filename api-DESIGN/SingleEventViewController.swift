@@ -45,7 +45,6 @@ class SingleEventViewController: UIViewController {
         loadingView.isHidden = false
         actind.startAnimating()
         DispatchQueue.global().async {
-            sleep(6)
             Alamofire.request(url,headers: headers).validate().responseJSON { response in
                 switch response.result {
                     
@@ -54,19 +53,33 @@ class SingleEventViewController: UIViewController {
                     let json = JSON(value)
                     var i: Int = 0, periods_num: Int = 0, curr_id: Int = 0
                     print(json)
-                    while true {
+                    while json["leagues"][0]["events"][i]["id"].intValue != 0 {
                         while curr_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue != self._event.id[curr_id] {
                             curr_id += 1
+                        }
+                        if curr_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue == self._event.id[curr_id] {
+                            break
                         }
                         curr_id = 0
                         i += 1
                     }
-                    if json["leagues"][0]["events"][i]["periods"][0]["moneyline"] == nil {
+                    if json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"] == nil {
                         periods_num = 1
+                        if json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"] == nil {
+                            self.errView.isHidden = false
+                            self.loadingView.isHidden = true
+                        }
+                        else {
+                            self._event.coeffs[0] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["home"].stringValue)!
+                            self._event.coeffs[1] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["draw"].stringValue)!
+                            self._event.coeffs[2] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["away"].stringValue)!
+                        }
                     }
-                    self._event.coeffs[0] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["home"].stringValue)!
-                    self._event.coeffs[1] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["draw"].stringValue)!
-                    self._event.coeffs[2] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["away"].stringValue)!
+                    else {
+                        self._event.coeffs[0] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["home"].stringValue)!
+                        self._event.coeffs[1] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["draw"].stringValue)!
+                        self._event.coeffs[2] = Double(json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"]["away"].stringValue)!
+                    }
                     self.firstCoeff.setTitle(String(self._event.coeffs[0]), for: UIControlState.normal)
                     self.drawCoeff.setTitle(String(self._event.coeffs[1]), for : UIControlState.normal)
                     self.secondCoeff.setTitle(String(self._event.coeffs[2]), for: UIControlState.normal)
