@@ -38,6 +38,8 @@ class SingleEventViewController: UIViewController {
     var coeff = Double()
     var _event = SingleEvent()
     override func viewDidLoad() {
+        
+        self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
         let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         loadingView.isHidden = false
@@ -180,6 +182,9 @@ class SingleEventViewController: UIViewController {
             self.realm.add(newBet)
             
             realm.objects(Balance)[0].amount -= amount
+            self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
+
+            
 
         }
         

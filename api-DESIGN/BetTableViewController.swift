@@ -50,6 +50,11 @@ class BetTableViewController: UITableViewController {
         super.viewDidLoad()
         loadDSampleEvents()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+        loadDSampleEvents()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
