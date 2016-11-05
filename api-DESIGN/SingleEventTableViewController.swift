@@ -12,6 +12,7 @@ class SingleEventTableViewController: UITableViewController {
     var events = [SingleEvent]()
     
     func loadFromWeb() {
+        let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
@@ -33,9 +34,10 @@ class SingleEventTableViewController: UITableViewController {
                     let lg = leagueJson["id"].intValue
                     for (_,eventsJson) in leagueJson["events"] {
                             let home_name = eventsJson["home"].stringValue, away_name = eventsJson["away"].stringValue
-                            if home_name.contains(("Bogota")){
+                            if home_name.contains(("Sydney FC")){
                                 print(eventsJson)
                             }
+                            let event_status = eventsJson["status"]
                             let event_id = Int(eventsJson["id"].stringValue)
                             var tmpstr = eventsJson["starts"].stringValue
                             let c = tmpstr.characters
@@ -44,16 +46,18 @@ class SingleEventTableViewController: UITableViewController {
                             let dstr = String(tmpstr[datei]), tstr = String(tmpstr[timei])
                             let time = dateFormatter.date(from: dstr! + " " + tstr!)
                             let event_hour = calendar.component(.hour, from: time!), event_minute = calendar.component(.minute, from: time!), event_day = calendar.component(.day, from: time!), event_month = calendar.component(.month, from: time!)
-                            if (minute >= event_minute && hour >= event_hour) || day > event_day || month > event_month || day == event_day + 1 || month == event_month + 1
+                            if month > event_month || day > event_day || (month == event_month && day == event_day && ((hour == event_hour && minute >= event_minute) || (hour > event_hour && minute >= event_minute)))
                             {
                                 continue
                             }
-                            let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
-                            if home_name.contains("Home Teams") || away_name.contains("Home Teams") || home_name.contains("PEN") || away_name.contains("PEN") || home_name.contains("Bookings") || away_name.contains("Bookings") || home_name.contains("Corners") || away_name.contains("Corners") || events_filtered.count > 0 {
-                                continue
-                            }
+                            else {
+                                let events_filtered = self.events.filter({ $0.homeTeamName == home_name && $0.awayTeamName == away_name })
+                                if home_name.contains("Home Teams") || away_name.contains("Home Teams") || home_name.contains("PEN") || away_name.contains("PEN") || home_name.contains("Bookings") || away_name.contains("Bookings") || home_name.contains("Corners") || away_name.contains("Corners") || event_status != "O" || events_filtered.count > 0 {
+                                    continue
+                                }
                             let tmpevent = SingleEvent(homeTeamName: home_name, awayTeamName : away_name, time: time!, id: event_id!, league: lg, status: 0)
                             self.events += [tmpevent]
+                            }
                     }
                 }
                 self.events.sort( by: { $0.time < $1.time })
