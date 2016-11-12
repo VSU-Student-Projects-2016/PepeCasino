@@ -11,13 +11,14 @@ import RealmSwift
 
 class BetTableViewController: UITableViewController {
 
+    @IBOutlet var segmentedCont: UISegmentedControl!
     
 
     let realm = try! Realm()
     lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
     //var bets = [SingleBet]()
-    func loadDSampleEvents() {
+    func loadBets() {
         if bets.count == 0 { // 1
             
             try! realm.write() { // 2
@@ -35,27 +36,37 @@ class BetTableViewController: UITableViewController {
             }
             
             
-            
         }
-        bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false)
+        if (segmentedCont.selectedSegmentIndex==0)
+        {
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 0")
+        }
+        else {
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status != 0")
+        }
     }
-       /* let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
-        let bet2 = SingleBet(time : "2016-10-23 23:55", homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
-        let bet3 = SingleBet(time : "2015-12-12 10:25",homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
-        bets.append(bet1)
-        bets.append(bet2)
-        bets.append(bet3)*/
-    
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
-        loadDSampleEvents()
+        loadBets()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
-        loadDSampleEvents()
-
+        loadBets()
+    }
+    @IBAction func segmentedContChanged(_ sender: AnyObject) {
+        //segmentedCont.isHidden = true;
+        if (segmentedCont.selectedSegmentIndex==0)
+        {
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 0")
+        }
+        else {
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 1")
+        }
+        self.tableView.reloadData()
     }
 
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

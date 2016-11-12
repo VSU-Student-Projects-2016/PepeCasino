@@ -12,7 +12,6 @@ class BetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet var lbTeamNames: UILabel!
-    @IBOutlet var lbStatus: UILabel!
     @IBOutlet var lbPlaced: UILabel!
     @IBOutlet var lbPaid: UILabel!
     
@@ -40,21 +39,29 @@ class BetTableViewCell: UITableViewCell {
     func fill(from _bet: SingleBet) {
             let str = _bet.completeTeamNames()
             lbTeamNames.text = str
-            lbTime.text = stringFromTime(_time: _bet.time, format: "MM/dd")
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM \nHH:mm"
+            //dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
+
+        lbTime.text = dateFormatter.string(from: _bet.betTime)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")
             lbPlaced.text = lbPlaced.text! + String(_bet.amount)
             switch _bet.status {
             case 0:
-                lbStatus.text = "Not started"
+                self.backgroundColor = UIColor.white
+                //lbStatus.text = "Not started"
                 lbPaid.text = lbPaid.text! +  "..."
 
             case 1:
-                lbStatus.textColor = UIColor.red
-                lbStatus.text = "LOSE"
+               // lbStatus.textColor = UIColor.red
+                self.backgroundColor = UIColor.red.withAlphaComponent(0.15)
+
+                //lbStatus.text = "LOSE"
                 lbPaid.text = lbPaid.text! +  "0"
 
             case 2:
-                lbStatus.textColor = UIColor.green
-                lbStatus.text = "WIN"
+                self.backgroundColor = UIColor.green
+               // lbStatus.textColor = UIColor.green
+                //lbStatus.text = "WIN"
                 lbPaid.text = lbPaid.text! + String(_bet.amount * _bet.coefficient)
                 
             default:
@@ -69,7 +76,7 @@ class BetTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 
