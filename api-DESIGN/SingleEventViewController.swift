@@ -41,10 +41,27 @@ class SingleEventViewController: UIViewController {
         
         self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
         let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
+        //let tmpstr = String(_event.timeAsString()[_event.timeAsString().index(_event.timeAsString().startIndex, offsetBy: 0)..<_event.timeAsString().index(_event.timeAsString().endIndex, offsetBy: -12)])
+        //let datei = c.index(c.startIndex, offsetBy: 0)..<c.index(c.endIndex, offsetBy: -10)
+        //let url = "https://api.football-data.org/v1/fixtures/?timeFrame=p1" + String(_event.league)//tmpstr!
+        //let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(_event.league)
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        //let headers: HTTPHeaders = ["X-Auth-Token":"5d3db3e16bf84ae1b4a6db7ea11b38b5"]
         loadingView.isHidden = false
         actind.startAnimating()
         DispatchQueue.global().async {
+           /* Alamofire.request(url,headers: headers).validate().responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    self.loadingView.isHidden = true
+                    let json = JSON(value)
+                    print(json)
+                case .failure(let error):
+                    self.errView.isHidden = false
+                    self.loadingView.isHidden = true
+                    print(error)
+                }
+            }*/
             Alamofire.request(url,headers: headers).validate().responseJSON { response in
                 switch response.result {
                     

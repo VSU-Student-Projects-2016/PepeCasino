@@ -309,6 +309,11 @@
 					AE15D3DE1D9FD53B00ADAEC1 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
