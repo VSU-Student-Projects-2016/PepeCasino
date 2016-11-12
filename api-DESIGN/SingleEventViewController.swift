@@ -196,6 +196,7 @@ class SingleEventViewController: UIViewController {
             newBet.status = 0
             newBet.amount = amount
             newBet.coefficient = coeff
+            newBet.betTime = Date()
             self.realm.add(newBet)
             
             realm.objects(Balance)[0].amount -= amount
