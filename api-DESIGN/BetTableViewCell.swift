@@ -37,10 +37,22 @@ class BetTableViewCell: UITableViewCell {
         }
     }*/
     func fill(from _bet: SingleBet) {
-            let str = _bet.completeTeamNames()
-            lbTeamNames.text = str
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM \nHH:mm"
+        let str = _bet.completeTeamNames()
+        lbTeamNames.text = str
+        _bet.updateStatus()
+        /*if (_bet.status != 2)
+        {
+            let currTime = Date()
+            if currTime > _bet.time
+            {
+                _bet.status = 1
+            }
+            if (_bet.isEnded()) {_bet.status = 2}
+        }*/
+
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM \nHH:mm"
             //dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
 
         lbTime.text = dateFormatter.string(from: _bet.betTime)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")

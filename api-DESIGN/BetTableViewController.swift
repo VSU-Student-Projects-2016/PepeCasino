@@ -15,6 +15,8 @@ class BetTableViewController: UITableViewController {
     
 
     let realm = try! Realm()
+    lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
+
     func loadDef()
     {
         try! realm.write() {
@@ -31,7 +33,6 @@ class BetTableViewController: UITableViewController {
             }
         }
     }
-    lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
     //var bets = [SingleBet]()
     func loadBets()
@@ -39,17 +40,8 @@ class BetTableViewController: UITableViewController {
         if bets.count == 0 {
             loadDef()
         }
-        var tmp_bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
-        var i = 0
-        while( i < tmp_bets.count && bets[i].status < 2)
-        {
-            if bets[i].status == 0
-            {
-                print("kuk")
-            }
-        }
-        
-        bets = tmp_bets
+         bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
+
     }
     
         override func viewDidLoad() {
@@ -99,9 +91,9 @@ class BetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleBetCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
-        
+        try! realm.write() {
         cell.fill(from: bets[indexPath.row])
-        
+        }
         //cell.lbStatus.text = String(Bet.isWon)
         
         return cell

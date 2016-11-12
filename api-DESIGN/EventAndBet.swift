@@ -201,6 +201,18 @@ class SingleBet : Object {
         return dateFormatter.string(from: time)
     }
     
+    func updateStatus()
+    {
+        if status == 2 {return}
+        let currTime = Date()
+        if currTime > time
+        {
+            self.status = 1
+        }
+        if (isEnded()) {status = 2}
+        
+    }
+    
     func isWon() -> Bool
     {
         switch choice{
@@ -213,6 +225,10 @@ class SingleBet : Object {
         default:
             return false
         }
+    }
+    func isEnded() -> Bool
+    {
+        return false
     }
     
     func scoreAsString() -> String
