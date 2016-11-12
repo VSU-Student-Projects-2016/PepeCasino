@@ -201,6 +201,19 @@ class SingleBet : Object {
         return dateFormatter.string(from: time)
     }
     
+    func isWon() -> Bool
+    {
+        switch choice{
+        case 0:
+            return firstScore > secondScore
+        case 1:
+            return firstScore == secondScore
+        case 2:
+            return firstScore < secondScore
+        default:
+            return false
+        }
+    }
     
     func scoreAsString() -> String
     {

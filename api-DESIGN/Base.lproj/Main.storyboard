@@ -51,6 +51,7 @@
                                     <segments>
                                         <segment title="Active"/>
                                         <segment title="Done"/>
+                                        <segment title="All"/>
                                     </segments>
                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.69604342407975461" colorSpace="calibratedRGB"/>
                                     <connections>

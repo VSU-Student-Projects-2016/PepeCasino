@@ -44,29 +44,26 @@ class BetTableViewCell: UITableViewCell {
             //dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
 
         lbTime.text = dateFormatter.string(from: _bet.betTime)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")
-            lbPlaced.text = lbPlaced.text! + String(_bet.amount)
-            switch _bet.status {
-            case 0:
-                self.backgroundColor = UIColor.white
-                //lbStatus.text = "Not started"
-                lbPaid.text = lbPaid.text! +  "..."
-
-            case 1:
-               // lbStatus.textColor = UIColor.red
-                self.backgroundColor = UIColor.red.withAlphaComponent(0.15)
-
-                //lbStatus.text = "LOSE"
-                lbPaid.text = lbPaid.text! +  "0"
-
-            case 2:
-                self.backgroundColor = UIColor.green
-               // lbStatus.textColor = UIColor.green
-                //lbStatus.text = "WIN"
-                lbPaid.text = lbPaid.text! + String(_bet.amount * _bet.coefficient)
-                
-            default:
-                print("kuk")
+        lbPlaced.text = "Placed: " + String(_bet.amount)
+        if (_bet.status == 0)
+        {
+            self.backgroundColor = UIColor.white
+            lbPaid.text = "Paid: ..."
+        }
+        else
+        {
+            if (_bet.isWon())
+            {
+                self.backgroundColor = UIColor.green.withAlphaComponent(0.15)
+                lbPaid.text = "Paid: " + String(_bet.amount * _bet.coefficient)
             }
+            else
+            {
+                self.backgroundColor = UIColor.red.withAlphaComponent(0.15)
+                lbPaid.text = "Paid: 0"
+
+            }
+        }
     }
     
     override func awakeFromNib() {

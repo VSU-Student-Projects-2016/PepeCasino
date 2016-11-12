@@ -15,39 +15,48 @@ class BetTableViewController: UITableViewController {
     
 
     let realm = try! Realm()
+    func loadDef()
+    {
+        try! realm.write() {
+            //realm.deleteAll()
+            let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ]
+            
+            for tmName in defaulTteamNames { // 4
+                let newBet = SingleBet()
+                newBet.homeTeamName = tmName
+                newBet.awayTeamName = tmName
+                newBet.amount = 200
+                newBet.status = 2;
+                self.realm.add(newBet)
+            }
+        }
+    }
     lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
     //var bets = [SingleBet]()
-    func loadBets() {
-        if bets.count == 0 { // 1
-            
-            try! realm.write() { // 2
-                
-                let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ] // 3
-                
-                for tmName in defaulTteamNames { // 4
-                    let newBet = SingleBet()
-                    newBet.homeTeamName = tmName
-                    newBet.awayTeamName = tmName
-                    newBet.amount = 200
-                    newBet.status = 1;
-                    self.realm.add(newBet)
-                }
-            }
-            
-            
+    func loadBets()
+    {
+        if bets.count == 0 {
+            loadDef()
         }
-        if (segmentedCont.selectedSegmentIndex==0)
+        var tmp_bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
+        var i = 0
+        while( i < tmp_bets.count && bets[i].status < 2)
         {
-            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 0")
+            if bets[i].status == 0
+            {
+                print("kuk")
+            }
         }
-        else {
-            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status != 0")
-        }
+        
+        bets = tmp_bets
     }
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         loadBets()
+        segmentedCont.selectedSegmentIndex = 2
+        //if bets.status
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
@@ -57,10 +66,13 @@ class BetTableViewController: UITableViewController {
         //segmentedCont.isHidden = true;
         if (segmentedCont.selectedSegmentIndex==0)
         {
-            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 0")
+            bets = realm.objects(SingleBet).filter("status == 0").sorted(byProperty: "time", ascending: false)
+        }
+        else if (segmentedCont.selectedSegmentIndex==1){
+            bets = realm.objects(SingleBet).filter("status > 0").sorted(byProperty: "time", ascending: false)
         }
         else {
-            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false).filter("status == 1")
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false)
         }
         self.tableView.reloadData()
     }
