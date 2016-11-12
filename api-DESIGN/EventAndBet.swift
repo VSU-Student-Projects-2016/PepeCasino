@@ -14,6 +14,10 @@ import RealmSwift
 class Balance : Object{
     dynamic var amount  = 0.0
 }
+
+//user defaults
+//boarding ios cocoacontrols
+//https://www.cocoacontrols.com/controls/abcintroview
 class SingleEvent {
     
     init(homeTeamName: String, awayTeamName: String, time: Date, id: Int, league: Int, status: Int) {

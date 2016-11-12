@@ -55,7 +55,7 @@ class BetTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "dd/MM \nHH:mm"
             //dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
 
-        lbTime.text = dateFormatter.string(from: _bet.betTime)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")
+        lbTime.text = dateFormatter.string(from: _bet.time)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")
         lbPlaced.text = "Placed: " + String(_bet.amount)
         if (_bet.status == 0)
         {
