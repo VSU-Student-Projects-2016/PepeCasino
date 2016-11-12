@@ -14,6 +14,10 @@ import RealmSwift
 class Balance : Object{
     dynamic var amount  = 0.0
 }
+
+//user defaults
+//boarding ios cocoacontrols
+//https://www.cocoacontrols.com/controls/abcintroview
 class SingleEvent {
     
     init(homeTeamName: String, awayTeamName: String, time: Date, id: Int, league: Int, status: Int) {
@@ -201,6 +205,35 @@ class SingleBet : Object {
         return dateFormatter.string(from: time)
     }
     
+    func updateStatus()
+    {
+        if status == 2 {return}
+        let currTime = Date()
+        if currTime > time
+        {
+            self.status = 1
+        }
+        if (isEnded()) {status = 2}
+        
+    }
+    
+    func isWon() -> Bool
+    {
+        switch choice{
+        case 0:
+            return firstScore > secondScore
+        case 1:
+            return firstScore == secondScore
+        case 2:
+            return firstScore < secondScore
+        default:
+            return false
+        }
+    }
+    func isEnded() -> Bool
+    {
+        return false
+    }
     
     func scoreAsString() -> String
     {

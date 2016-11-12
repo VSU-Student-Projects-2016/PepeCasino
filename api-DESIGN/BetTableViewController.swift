@@ -11,51 +11,66 @@ import RealmSwift
 
 class BetTableViewController: UITableViewController {
 
+    @IBOutlet var segmentedCont: UISegmentedControl!
     
 
     let realm = try! Realm()
     lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
-    //var bets = [SingleBet]()
-    func loadDSampleEvents() {
-        if bets.count == 0 { // 1
+    func loadDef()
+    {
+        try! realm.write() {
+            //realm.deleteAll()
+            let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ]
             
-            try! realm.write() { // 2
-                
-                let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ] // 3
-                
-                for tmName in defaulTteamNames { // 4
-                    let newBet = SingleBet()
-                    newBet.homeTeamName = tmName
-                    newBet.awayTeamName = tmName
-                    newBet.amount = 200
-                    newBet.status = 1;
-                    self.realm.add(newBet)
-                }
+            for tmName in defaulTteamNames { // 4
+                let newBet = SingleBet()
+                newBet.homeTeamName = tmName
+                newBet.awayTeamName = tmName
+                newBet.amount = 200
+                newBet.status = 2;
+                self.realm.add(newBet)
             }
-            
-            
-            
         }
-        bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false)
     }
-       /* let bet1 = SingleBet(time : "2016-05-12 13:30", homeTeamName: "Real Madrid", awayTeamName: "Barselona", isWon: true, amount: 100, coefficient: 1.75)
-        let bet2 = SingleBet(time : "2016-10-23 23:55", homeTeamName: "MiDERY", awayTeamName: "Egor", isWon: false, amount: 200, coefficient: 2.50)
-        let bet3 = SingleBet(time : "2015-12-12 10:25",homeTeamName: "Bavaria", awayTeamName: "Liverpool", isWon: false, amount: 150, coefficient: 1.23)
-        bets.append(bet1)
-        bets.append(bet2)
-        bets.append(bet3)*/
+
+    //var bets = [SingleBet]()
+    func loadBets()
+    {
+        if bets.count == 0 {
+            loadDef()
+        }
+         bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
+
+    }
     
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
-        loadDSampleEvents()
+        loadBets()
+        segmentedCont.selectedSegmentIndex = 2
+        //if bets.status
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
-        loadDSampleEvents()
-
+        loadBets()
+    }
+    @IBAction func segmentedContChanged(_ sender: AnyObject) {
+        //segmentedCont.isHidden = true;
+        if (segmentedCont.selectedSegmentIndex==0)
+        {
+            bets = realm.objects(SingleBet).filter("status == 0").sorted(byProperty: "time", ascending: false)
+        }
+        else if (segmentedCont.selectedSegmentIndex==1){
+            bets = realm.objects(SingleBet).filter("status > 0").sorted(byProperty: "time", ascending: false)
+        }
+        else {
+            bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false)
+        }
+        self.tableView.reloadData()
     }
 
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,9 +91,9 @@ class BetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleBetCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
-        
+        try! realm.write() {
         cell.fill(from: bets[indexPath.row])
-        
+        }
         //cell.lbStatus.text = String(Bet.isWon)
         
         return cell

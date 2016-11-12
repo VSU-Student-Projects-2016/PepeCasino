@@ -12,7 +12,6 @@ class BetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet var lbTeamNames: UILabel!
-    @IBOutlet var lbStatus: UILabel!
     @IBOutlet var lbPlaced: UILabel!
     @IBOutlet var lbPaid: UILabel!
     
@@ -38,28 +37,45 @@ class BetTableViewCell: UITableViewCell {
         }
     }*/
     func fill(from _bet: SingleBet) {
-            let str = _bet.completeTeamNames()
-            lbTeamNames.text = str
-            lbTime.text = stringFromTime(_time: _bet.time, format: "MM/dd")
-            lbPlaced.text = lbPlaced.text! + String(_bet.amount)
-            switch _bet.status {
-            case 0:
-                lbStatus.text = "Not started"
-                lbPaid.text = lbPaid.text! +  "..."
-
-            case 1:
-                lbStatus.textColor = UIColor.red
-                lbStatus.text = "LOSE"
-                lbPaid.text = lbPaid.text! +  "0"
-
-            case 2:
-                lbStatus.textColor = UIColor.green
-                lbStatus.text = "WIN"
-                lbPaid.text = lbPaid.text! + String(_bet.amount * _bet.coefficient)
-                
-            default:
-                print("kuk")
+        let str = _bet.completeTeamNames()
+        lbTeamNames.text = str
+        _bet.updateStatus()
+        /*if (_bet.status != 2)
+        {
+            let currTime = Date()
+            if currTime > _bet.time
+            {
+                _bet.status = 1
             }
+            if (_bet.isEnded()) {_bet.status = 2}
+        }*/
+
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM \nHH:mm"
+            //dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
+
+        lbTime.text = dateFormatter.string(from: _bet.time)//stringFromTime(_time: _bet.betTime, format: "yyyy-MM-dd HH:mm")
+        lbPlaced.text = "Placed: " + String(_bet.amount)
+        if (_bet.status == 0)
+        {
+            self.backgroundColor = UIColor.white
+            lbPaid.text = "Paid: ..."
+        }
+        else
+        {
+            if (_bet.isWon())
+            {
+                self.backgroundColor = UIColor.green.withAlphaComponent(0.15)
+                lbPaid.text = "Paid: " + String(_bet.amount * _bet.coefficient)
+            }
+            else
+            {
+                self.backgroundColor = UIColor.red.withAlphaComponent(0.15)
+                lbPaid.text = "Paid: 0"
+
+            }
+        }
     }
     
     override func awakeFromNib() {
@@ -69,7 +85,7 @@ class BetTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 
