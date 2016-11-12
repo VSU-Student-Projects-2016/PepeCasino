@@ -9,8 +9,7 @@ class SingleEventTableViewController: UITableViewController {
     var events = [SingleEvent]()
     
     func loadFromWeb() {
-        self.events.removeAll()
-        let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
+         let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: +0010)
