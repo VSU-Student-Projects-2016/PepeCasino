@@ -3,6 +3,41 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "BetTableViewController.(loadBets() -&gt; ()).(closure #1):BetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bets[i].status">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventTableViewController.viewWillAppear(Bool) -&gt; ():SingleEventTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController?.navigationItem.rightBarButtonItem">
+            </PersistentString>
+            <PersistentString
+               value = "tabBarController?.navigationItem.rightBarButtonItem.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):SingleEventViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_event">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventTableViewController.prepare(for : UIStoryboardSegue, sender : Any?) -&gt; ():SingleEventTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tabBarController?.navigationItem.rightBarButtonItem.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SingleEventViewController.viewDidLoad() -&gt; ():SingleEventViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -14,26 +49,10 @@
          contextName = "SingleEventTableViewController.loadSampleEvents() -&gt; ():SingleEventTableViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "BetTableViewController.(loadBets() -&gt; ()).(closure #1):BetTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "bets[i].status">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "SingleEventTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "events.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleEventViewController.(viewDidLoad() -&gt; ()).(closure #1).(closure #1):SingleEventViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "_event">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

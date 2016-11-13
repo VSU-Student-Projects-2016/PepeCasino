@@ -59,6 +59,8 @@ class BetTableViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
+
         loadBets()
     }
     @IBAction func segmentedContChanged(_ sender: AnyObject) {

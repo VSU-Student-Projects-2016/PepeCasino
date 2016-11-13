@@ -2,7 +2,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SingleEventTableViewController: UITableViewController {
+class SingleEventTableViewController: UITableViewController, UISearchBarDelegate {
 
     
 
@@ -85,6 +85,8 @@ class SingleEventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.isNavigationBarHidden = true
+        
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
         refreshControl?.addTarget(self, action: "RefreshData", for: UIControlEvents.valueChanged)
@@ -93,6 +95,19 @@ class SingleEventTableViewController: UITableViewController {
         //loadFromWeb()
         RefreshData()
         //loadSampleEvents()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated) // No need for semicolon
+        var rightButt = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: nil, action: "SearchEvs")
+        self.tabBarController?.navigationItem.rightBarButtonItem = rightButt
+    }
+    func SearchEvs(){//sender: UIBarButtonItem) {
+        print("kuk")
+        let searchBar = UISearchBar()
+        searchBar.showsCancelButton = false
+        searchBar.placeholder = "Enter the name of event"
+        searchBar.delegate = self
+        events.removeAll()
     }
     func RefreshData() {
         DispatchQueue.global().async {
