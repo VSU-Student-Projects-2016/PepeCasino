@@ -14,6 +14,14 @@
          contextName = "SingleEventTableViewController.loadSampleEvents() -&gt; ():SingleEventTableViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "BetTableViewController.(loadBets() -&gt; ()).(closure #1):BetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bets[i].status">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SingleEventTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString

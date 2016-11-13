@@ -17,10 +17,9 @@ class BetTableViewController: UITableViewController {
     let realm = try! Realm()
     lazy var bets: Results<SingleBet> = { self.realm.objects(SingleBet) }()
 
+    
     func loadDef()
     {
-        try! realm.write() {
-            //realm.deleteAll()
             let defaulTteamNames = ["Birds", "Mammals", "Flora", "Reptiles", "Arachnids" ]
             
             for tmName in defaulTteamNames { // 4
@@ -31,22 +30,29 @@ class BetTableViewController: UITableViewController {
                 newBet.status = 2;
                 self.realm.add(newBet)
             }
-        }
     }
 
     //var bets = [SingleBet]()
     func loadBets()
     {
+        try! realm.write() {
+
         if bets.count == 0 {
             loadDef()
         }
-         bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
-
+        bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
+            var i = 0
+            while(i < bets.count && bets[i].status < 2)
+            {
+                bets[i].updateStatus()
+                i += 1
+            }
+        }
     }
     
         override func viewDidLoad() {
         super.viewDidLoad()
-        loadBets()
+        //loadBets()
         segmentedCont.selectedSegmentIndex = 2
         //if bets.status
     }
@@ -91,9 +97,9 @@ class BetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleBetCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BetTableViewCell
-        try! realm.write() {
+        //try! realm.write() {
         cell.fill(from: bets[indexPath.row])
-        }
+        //}
         //cell.lbStatus.text = String(Bet.isWon)
         
         return cell

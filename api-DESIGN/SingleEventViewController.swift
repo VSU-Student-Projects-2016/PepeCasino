@@ -20,7 +20,6 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var evStatus: UILabel!
     @IBOutlet weak var evTeams: UILabel!
     @IBOutlet weak var evTime: UILabel!
-    @IBOutlet weak var evScore: UILabel!
     @IBOutlet weak var firstCoeff: UIButton!
     @IBOutlet weak var drawCoeff: UIButton!
     @IBOutlet weak var secondCoeff: UIButton!
@@ -33,6 +32,9 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var betEstWin: UILabel!
     @IBOutlet weak var betConfirm: UIButton!
     @IBOutlet weak var betErrorAmount: UILabel!
+    @IBOutlet weak var betConfirmSureLabel: UILabel!
+    @IBOutlet weak var betConfirmYes: UIButton!
+    @IBOutlet weak var betConfirmCancel: UIButton!
     
     
     var coeff = Double()
@@ -120,7 +122,6 @@ class SingleEventViewController: UIViewController {
         
         evTeams.text = _event.completeTeamNames()
         evTime.text = _event.timeAsString()
-        evScore.text = _event.scoreAsString()
         super.viewDidLoad()
         
         
@@ -201,6 +202,25 @@ class SingleEventViewController: UIViewController {
             self.present(alert, animated:true, completion:nil)
         }
     }
+    @IBAction func placeBetConfirmAction(_ sender: AnyObject) {
+        let amount = Double(betAmount.text!)!
+        try! realm.write() { // 2
+            
+            let newBet = SingleBet()
+            newBet.homeTeamName = _event.homeTeamName
+            newBet.awayTeamName = _event.awayTeamName
+            newBet.time = _event.time
+            newBet.status = 0
+            newBet.amount = amount
+            newBet.coefficient = coeff
+            newBet.betTime = Date()
+            self.realm.add(newBet)
+            
+            realm.objects(Balance)[0].amount -= amount
+            self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
+            
+        }
+    }
     func placeBetHandler(alert: UIAlertAction){
         //print("You tapped: \(alert.title)")
         let amount = Double(betAmount.text!)!
@@ -218,9 +238,6 @@ class SingleEventViewController: UIViewController {
             
             realm.objects(Balance)[0].amount -= amount
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
-
-            
-
         }
         
     }
