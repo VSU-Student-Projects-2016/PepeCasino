@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.navigationItem.rightBarButtonItem = nil
 
         // Do any additional setup after loading the view.
     }

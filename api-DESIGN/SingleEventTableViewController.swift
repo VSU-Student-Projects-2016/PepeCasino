@@ -2,12 +2,20 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SingleEventTableViewController: UITableViewController, UISearchBarDelegate {
+class SingleEventTableViewController: UITableViewController, UISearchResultsUpdating {
 
     
 
     var events = [SingleEvent]()
+    var searchController: UISearchController!
+    var flag = false
+    var searchResultEvents = [SingleEvent]()
     
+    
+    
+    
+    
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     func loadFromWeb() {
          let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
         let dateFormatter = DateFormatter()
@@ -68,46 +76,44 @@ class SingleEventTableViewController: UITableViewController, UISearchBarDelegate
             }
         }		        
     }
-    func loadSampleEvents() {
-        /*let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        var EventDate = dateFormatter.date(from: "2016-10-04 12:30")
-        var coefficients : [Double] = [1.75, 1.26, 2.31]
-        let Event1 = SingleEvent(homeTeamName: "Real Madrid", awayTeamName: "Manchester United", time: EventDate!, coeffs : coefficients)
-        coefficients = [1.23, 1.39, 3.56 ]
-        EventDate = dateFormatter.date(from: "2016-10-06 19:00")
-
-        let Event2 = SingleEvent(homeTeamName: "Зенит", awayTeamName : "Амкар", time: EventDate!, coeffs : coefficients)
-        
-        events += [Event1, Event2]*/
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.isNavigationBarHidden = true
+
+        searchController = UISearchController(searchResultsController: nil)
+        //tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Type the name of event..."
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.darkGray
         
+        
+        
+        //tableView.tableHeaderView?.isHidden = true
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Loading...")
         refreshControl?.addTarget(self, action: "RefreshData", for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl!) // not required when using UITableViewController
+        tableView.addSubview(refreshControl!)
         
-        //loadFromWeb()
         RefreshData()
-        //loadSampleEvents()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
-        var rightButt = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: nil, action: "SearchEvs")
-        self.tabBarController?.navigationItem.rightBarButtonItem = rightButt
+        let rightButt = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: "SearchEvs")
+        tabBarController?.navigationItem.rightBarButtonItem = rightButt
     }
-    func SearchEvs(){//sender: UIBarButtonItem) {
-        print("kuk")
-        let searchBar = UISearchBar()
-        searchBar.showsCancelButton = false
-        searchBar.placeholder = "Enter the name of event"
-        searchBar.delegate = self
-        events.removeAll()
+    func SearchEvs(){//(sender: UIBarButtonItem) {
+        
+        if flag { tableView.tableHeaderView = nil
+        }else{
+            tableView.tableHeaderView = searchController.searchBar
+        }
+        
+        flag = !flag
+
     }
     func RefreshData() {
         DispatchQueue.global().async {
@@ -116,20 +122,21 @@ class SingleEventTableViewController: UITableViewController, UISearchBarDelegate
         }
         self.tableView.reloadData()
     }
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive {
+            return searchResultEvents.count
+        }
         return events.count
     }
 
@@ -138,15 +145,23 @@ class SingleEventTableViewController: UITableViewController, UISearchBarDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SingleEventTableViewCell
 
         // willset
-        cell._event  = events[indexPath.row]
+        cell._event = (searchController.isActive) ? searchResultEvents[indexPath.row] : events[indexPath.row]
         
         return cell
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if searchController.isActive {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let DestViewController: SingleEventViewController = segue.destination as! SingleEventViewController
         let path = self.tableView.indexPathForSelectedRow?.row
-        let sendingEvent = events[path!]
+        let sendingEvent = (searchController.isActive) ? searchResultEvents[path!] : events[path!]
+
         
 	
             //self.tableView.isHidden = true
@@ -198,5 +213,19 @@ class SingleEventTableViewController: UITableViewController, UISearchBarDelegate
         // Pass the selected object to the new view controller.
     }
     */
-
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(searchText: searchText)
+            tableView.reloadData()
+        }
+    }
+    func filterContent(searchText: String)
+    {
+        searchResultEvents = events.filter({(_ev : SingleEvent) -> Bool in
+            let homeMatch = _ev.homeTeamName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            let awayMatch = _ev.awayTeamName.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            
+            return homeMatch != nil || awayMatch != nil
+        })
+    }
 }
