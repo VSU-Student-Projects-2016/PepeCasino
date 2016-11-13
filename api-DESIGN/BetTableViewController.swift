@@ -48,6 +48,7 @@ class BetTableViewController: UITableViewController {
                 i += 1
             }
         }
+        self.tableView.reloadData()
     }
     
         override func viewDidLoad() {
@@ -64,10 +65,10 @@ class BetTableViewController: UITableViewController {
         //segmentedCont.isHidden = true;
         if (segmentedCont.selectedSegmentIndex==0)
         {
-            bets = realm.objects(SingleBet).filter("status == 0").sorted(byProperty: "time", ascending: false)
+            bets = realm.objects(SingleBet).filter("status < 2").sorted(byProperty: "time", ascending: false)
         }
         else if (segmentedCont.selectedSegmentIndex==1){
-            bets = realm.objects(SingleBet).filter("status > 0").sorted(byProperty: "time", ascending: false)
+            bets = realm.objects(SingleBet).filter("status == 2").sorted(byProperty: "time", ascending: false)
         }
         else {
             bets = realm.objects(SingleBet).sorted(byProperty: "time", ascending: false)

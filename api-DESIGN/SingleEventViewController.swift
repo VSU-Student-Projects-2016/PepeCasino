@@ -159,7 +159,15 @@ class SingleEventViewController: UIViewController {
         betConfirm.isHidden = isHid
         
     }
+    func HideConfirmationButtons(isHid: Bool)
+    {
+        betConfirmSureLabel.isHidden = isHid
+        betConfirmYes.isHidden = isHid
+        betConfirmCancel.isHidden = isHid
+    }
+
     @IBAction func amountTextChanged(_ sender: AnyObject) {
+        HideConfirmationButtons(isHid: true)
         if (betAmount.text! != "")
         {
             betEstWin.text! = "Your estimated win: " + String(Double(betAmount.text!)!*coeff)
@@ -195,13 +203,11 @@ class SingleEventViewController: UIViewController {
         else
         {
             betErrorAmount.isHidden = true
-            let alert = UIAlertController(title: "Bet placement", message: "Are you sure to place this bet?", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:placeBetHandler))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-
-            self.present(alert, animated:true, completion:nil)
         }
+        betConfirmSureLabel.text = "Are you sure to place this bet?"
+        HideConfirmationButtons(isHid: false)
     }
+    
     @IBAction func placeBetConfirmAction(_ sender: AnyObject) {
         let amount = Double(betAmount.text!)!
         try! realm.write() { // 2
@@ -218,9 +224,19 @@ class SingleEventViewController: UIViewController {
             
             realm.objects(Balance)[0].amount -= amount
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
+
+            HideConfirmationButtons(isHid: true)
+            let alert = UIAlertController(title: "Bet placement", message: "Succesful!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:nil))
+            self.present(alert, animated:true, completion:nil)
+            betAmount.text = "";
             
         }
     }
+    @IBAction func placeBetCancelAction(_ sender: AnyObject) {
+        HideConfirmationButtons(isHid: true)
+    }
+    
     func placeBetHandler(alert: UIAlertAction){
         //print("You tapped: \(alert.title)")
         let amount = Double(betAmount.text!)!
@@ -235,6 +251,8 @@ class SingleEventViewController: UIViewController {
             newBet.coefficient = coeff
             newBet.betTime = Date()
             self.realm.add(newBet)
+            
+            HideConfirmationButtons(isHid: true)
             
             realm.objects(Balance)[0].amount -= amount
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"

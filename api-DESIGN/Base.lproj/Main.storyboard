@@ -156,11 +156,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SingleEventCell" id="KdP-IC-J27" customClass="SingleEventTableViewCell" customModule="api_DESIGN" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SingleEventCell" id="KdP-IC-J27" customClass="SingleEventTableViewCell" customModule="api_DESIGN" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="playback" tableViewCell="KdP-IC-J27" id="wfx-pC-5Rg">
-                                    <frame key="frameInset" width="375" height="70"/>
+                                    <frame key="frameInset" width="342" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status &amp; Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9n-Ga-OxL">
@@ -192,7 +192,11 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" tag="1" title="Events" id="jtL-BR-mNV"/>
-                    <navigationItem key="navigationItem" title="Balance" id="9Me-yD-NRd"/>
+                    <navigationItem key="navigationItem" title="Balance" id="9Me-yD-NRd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="9LQ-dB-qXG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZX-Lc-rkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -356,15 +360,18 @@
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="placeBetCancelAction:" destination="VQ3-jt-o5P" eventType="touchUpInside" id="h5H-fU-2MV"/>
+                                </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Are you sure..." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLG-5r-6E0">
-                                <frame key="frameInset" minX="16" minY="547" width="343" height="34"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Are you sure..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLG-5r-6E0">
+                                <frame key="frameInset" minX="16" minY="547" width="343" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exG-9n-7Cd">
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exG-9n-7Cd">
                                 <frame key="frameInset" minX="7" minY="99" width="359" height="511"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -375,7 +382,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4VZ-HE-7vU">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4VZ-HE-7vU">
                                 <frame key="frameInset" minY="62" width="375" height="556"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -392,14 +399,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="exG-9n-7Cd"/>
-                                <exclude reference="4VZ-HE-7vU"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="One bet" id="1aY-PX-0p7"/>
+                    <navigationItem key="navigationItem" id="di6-cR-lfO"/>
                     <connections>
                         <outlet property="actind" destination="FLx-7k-jCm" id="6Pa-DQ-meu"/>
                         <outlet property="betAmount" destination="DhA-32-Er6" id="vER-cv-XXh"/>
