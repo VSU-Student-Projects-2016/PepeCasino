@@ -27,9 +27,19 @@ class BetTableViewController: UITableViewController {
                 newBet.homeTeamName = tmName
                 newBet.awayTeamName = tmName
                 newBet.amount = 200
-                newBet.status = 2;
+                newBet.status = 2
                 self.realm.add(newBet)
             }
+        let newBet = SingleBet()
+        newBet.homeTeamName = "Cock"
+        newBet.awayTeamName = "Cuck"
+        newBet.amount = 500
+        newBet.status = 2
+        newBet.choice = 1
+        newBet.coefficient = 2.0
+        self.realm.add(newBet)
+
+        
     }
 
     //var bets = [SingleBet]()
@@ -37,6 +47,7 @@ class BetTableViewController: UITableViewController {
     {
         try! realm.write() {
 
+        //realm.deleteAll()
         if bets.count == 0 {
             loadDef()
         }

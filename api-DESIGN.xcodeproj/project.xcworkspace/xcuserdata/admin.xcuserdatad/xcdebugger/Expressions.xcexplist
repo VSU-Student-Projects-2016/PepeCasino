@@ -11,10 +11,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SingleEventTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SingleEventTableViewController.swift">
+         contextName = "SingleEventTableViewController.viewWillAppear(Bool) -&gt; ():SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "events.count">
+               value = "tabBarController?.navigationItem.rightBarButtonItem">
+            </PersistentString>
+            <PersistentString
+               value = "tabBarController?.navigationItem.rightBarButtonItem.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewCell.fill(from : SingleBet) -&gt; ():BetTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_bet.amount">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -62,13 +73,10 @@
          contextName = "SingleEventTableViewController.loadSampleEvents() -&gt; ():SingleEventTableViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "SingleEventTableViewController.viewWillAppear(Bool) -&gt; ():SingleEventTableViewController.swift">
+         contextName = "SingleEventTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "tabBarController?.navigationItem.rightBarButtonItem">
-            </PersistentString>
-            <PersistentString
-               value = "tabBarController?.navigationItem.rightBarButtonItem.action">
+               value = "events.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import RealmSwift
     
-class SingleEventViewController: UIViewController {
+class SingleEventViewController: UIViewController, UITextFieldDelegate {
 
     
     let realm = try! Realm()
@@ -36,10 +36,17 @@ class SingleEventViewController: UIViewController {
     @IBOutlet weak var betConfirmYes: UIButton!
     @IBOutlet weak var betConfirmCancel: UIButton!
     
-    
+    let button = UIButton(type: UIButtonType.custom)
+
     var coeff = Double()
     var _event = SingleEvent()
+    
+    
+    
     override func viewDidLoad() {
+        
+        //self.addDoneButtonOnKeyboard()
+
         
         self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
         let url = "https://api.pinnaclesports.com/v1/odds?sportid=29&leagueids=" + String(_event.league) + "&oddsFormat=DECIMAL"
@@ -128,11 +135,38 @@ class SingleEventViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.betAmount.resignFirstResponder()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:0, y:0, width:320, height:50))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Accept", style: UIBarButtonItemStyle.done, target: self, action: Selector("doneButtonAction"))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.betAmount.inputAccessoryView = doneToolbar
+        
+    }
+    
+    func doneButtonAction()
+    {
+        self.betAmount.resignFirstResponder()
+    }*/
+
     
 
     /*
@@ -148,7 +182,12 @@ class SingleEventViewController: UIViewController {
         //dismissViewControllerAnimated(true, completion: nil)
         dismiss(animated: true, completion: nil)
     }
-    
+    func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+    {
+        betAmount.resignFirstResponder()
+    }
+
+
     
     func HideButtons(isHid: Bool)
     {
@@ -171,6 +210,8 @@ class SingleEventViewController: UIViewController {
         if (betAmount.text! != "")
         {
             betEstWin.text! = "Your estimated win: " + String(Double(betAmount.text!)!*coeff)
+        } else {
+            betEstWin.text! = "Your estimate win: 0"
         }
     }
 
@@ -179,38 +220,37 @@ class SingleEventViewController: UIViewController {
         case 0:
             betTeam.text! = "On the " +  _event.homeTeamName
             coeff = _event.coeffs[0]
-            betEstWin.text! = "Your estimate win: 0"
         case 1:
             betTeam.text! = "On draw"
             coeff = _event.coeffs[1]
-            betEstWin.text! = "Your estimate win: 0"
         case 2:
             betTeam.text! = "On the " + _event.awayTeamName
             coeff = _event.coeffs[2]
-            betEstWin.text! = "Your estimate win: 0"
         default:
             print("kuk")
+        }
+        if betAmount.text! == "" {
+            betEstWin.text! = "Your estimate win: 0"
+        } else {
+            betEstWin.text! = "Your estimated win: " + String(Double(betAmount.text!)!*coeff)
         }
         HideButtons(isHid: false)
 
         
     }
     @IBAction func placeBetConfirm(_ sender: AnyObject) {
-        if (realm.objects(Balance)[0].amount < Double(betAmount.text!)!)
-        {
+        if (realm.objects(Balance)[0].amount < Double(betAmount.text!)!) {
             betErrorAmount.isHidden = false
-        }
-        else
-        {
+        } else {
+            betConfirmSureLabel.text = "Are you sure to place this bet?"
+            HideConfirmationButtons(isHid: false)
             betErrorAmount.isHidden = true
         }
-        betConfirmSureLabel.text = "Are you sure to place this bet?"
-        HideConfirmationButtons(isHid: false)
     }
     
     @IBAction func placeBetConfirmAction(_ sender: AnyObject) {
         let amount = Double(betAmount.text!)!
-        try! realm.write() { // 2
+        try! realm.write() {
             
             let newBet = SingleBet()
             newBet.homeTeamName = _event.homeTeamName
@@ -226,11 +266,10 @@ class SingleEventViewController: UIViewController {
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
 
             HideConfirmationButtons(isHid: true)
-            let alert = UIAlertController(title: "Bet placement", message: "Succesful!", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:nil))
+            let alert = UIAlertController(title: "Success", message: "Your bet is accepted!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:placeBetHandler))
             self.present(alert, animated:true, completion:nil)
             betAmount.text = "";
-            
         }
     }
     @IBAction func placeBetCancelAction(_ sender: AnyObject) {
@@ -238,8 +277,10 @@ class SingleEventViewController: UIViewController {
     }
     
     func placeBetHandler(alert: UIAlertAction){
+        //dismiss(animated: true, completion: nil)
+
         //print("You tapped: \(alert.title)")
-        let amount = Double(betAmount.text!)!
+        /*let amount = Double(betAmount.text!)!
         try! realm.write() { // 2
                 
             let newBet = SingleBet()
@@ -256,8 +297,8 @@ class SingleEventViewController: UIViewController {
             
             realm.objects(Balance)[0].amount -= amount
             self.navigationItem.title = "Balance: " + String(realm.objects(Balance)[0].amount) + " PPS"
-        }
-        
+        */
     }
+    
 
 }

@@ -62,6 +62,7 @@ class BetTableViewCell: UITableViewCell {
             self.backgroundColor = UIColor.white
             lbPaid.backgroundColor = UIColor.gray
             lbPaid.textColor = UIColor.white
+            lbPaid.font = UIFont.systemFont(ofSize: 16.0)
             lbPaid.textAlignment = .center
             lbPaid.text = "Not started"
         case 1:
@@ -75,11 +76,20 @@ class BetTableViewCell: UITableViewCell {
         case 2:
             if (_bet.isWon())
             {
+                lbPaid.textColor = UIColor.black
+                lbPaid.font = UIFont.systemFont(ofSize: 16.0)
+                lbPaid.textAlignment = .left
+
+                lbPaid.backgroundColor = UIColor.green.withAlphaComponent(0.25)
                 self.backgroundColor = UIColor.green.withAlphaComponent(0.10)
                 lbPaid.text = "Paid: " + String(_bet.amount * _bet.coefficient)
-            }
-            else
-            {
+            } else {
+                lbPaid.textColor = UIColor.black
+                lbPaid.font = UIFont.systemFont(ofSize: 16.0)
+                lbPaid.textAlignment = .left
+
+                
+                lbPaid.backgroundColor = UIColor.red.withAlphaComponent(0.25)
                 self.backgroundColor = UIColor.red.withAlphaComponent(0.10)
                 lbPaid.text = "Paid: 0"
 
