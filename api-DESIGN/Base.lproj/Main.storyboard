@@ -147,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Settings" id="Foq-Xi-S5X"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Settings" image="iconTab3" id="Foq-Xi-S5X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uF-kX-IeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,7 +202,7 @@
                             <outlet property="delegate" destination="vfW-TN-4JC" id="Xpq-Rz-ZNP"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" tag="1" title="Events" id="jtL-BR-mNV"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Events" image="iconTab0" id="jtL-BR-mNV"/>
                     <navigationItem key="navigationItem" title="Balance" id="9Me-yD-NRd"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                 </tableViewController>
@@ -462,5 +462,9 @@
             <point key="canvasLocation" x="466" y="-2895"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconTab0" width="25" height="25"/>
+        <image name="iconTab3" width="25" height="25"/>
+    </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

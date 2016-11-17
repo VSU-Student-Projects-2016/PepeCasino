@@ -15,6 +15,14 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let selColor = UIColor(red: 120.0/255.0, green: 120.0/255.0, blue: 120.0/255.0, alpha: 1.0)
+        let unSelColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: selColor], for: .normal)
+        UITabBar.appearance().tintColor = unSelColor
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: unSelColor], for: .selected)
+        //UITabBar.appearance().barTintColor = UIColor.purple
         if (realmm.objects(Balance).count == 0)
         {
             try! realmm.write() {
