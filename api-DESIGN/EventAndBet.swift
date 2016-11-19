@@ -8,6 +8,8 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
+import SwiftyJSON
 
 
 
@@ -207,6 +209,17 @@ class SingleBet : Object {
     
     func updateStatus()
     {
+        let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(league)
+        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        Alamofire.request(url,headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+            case .failure(let error):
+                print(error)
+            }
+        }
         if status == 2 {return}
         let currTime = Date()
         if currTime > time
@@ -232,6 +245,9 @@ class SingleBet : Object {
     }
     func isEnded() -> Bool
     {
+        if (time + 6900 <= Date()) {
+            return true
+        }
         return false
     }
     

@@ -256,6 +256,7 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
             let newBet = SingleBet()
             newBet.homeTeamName = _event.homeTeamName
             newBet.awayTeamName = _event.awayTeamName
+            newBet.league = _event.league
             newBet.time = _event.time
             newBet.status = 0
             newBet.amount = amount

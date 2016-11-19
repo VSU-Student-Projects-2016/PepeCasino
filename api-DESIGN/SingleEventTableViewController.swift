@@ -17,6 +17,7 @@ class SingleEventTableViewController: UITableViewController, UISearchResultsUpda
     
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     func loadFromWeb() {
+        self.events.removeAll()
          let exception_words = [String](arrayLiteral: "Corners", "corners", "Home Teams", "Away Teams", "PEN", "Bookings")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
