@@ -56,20 +56,15 @@ class BetTableViewController: UITableViewController {
         bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
             var i = 0
             print(bets)
-            
-            DispatchQueue.global().async {
-
                 while(i < self.bets.count && self.bets[i].status < 2)
                 {
-                    self.self.bets[i].updateStatus()
+                    self.bets[i].updateStatus()
                     print(self.bets[i].league)
                     i += 1
                 }
             }
-            self.tableView.reloadData()
-        }
-        self.tableView.isHidden = true
-        //self.tableView.reloadData()
+        //self.tableView.isHidden = true
+        self.tableView.reloadData()
     }
     
         override func viewDidLoad() {

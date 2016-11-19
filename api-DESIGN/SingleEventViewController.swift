@@ -41,6 +41,7 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
 
     var coeff = Double()
     var _event = SingleEvent()
+    var event_id = 0;
     
     
     
@@ -78,16 +79,16 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
                 case .success(let value):
                     self.loadingView.isHidden = true
                     let json = JSON(value)
-                    var i: Int = 0, periods_num: Int = 0, curr_id: Int = 0
+                    var i: Int = 0, periods_num: Int = 0
                     print(json)
                     while json["leagues"][0]["events"][i]["id"].intValue != 0 {
-                        while curr_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue != self._event.id[curr_id] {
-                            curr_id += 1
+                        while self.event_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue != self._event.id[self.event_id] {
+                            self.event_id += 1
                         }
-                        if curr_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue == self._event.id[curr_id] {
+                        if self.event_id < self._event.id.count && json["leagues"][0]["events"][i]["id"].intValue == self._event.id[self.event_id] {
                             break
                         }
-                        curr_id = 0
+                        self.event_id = 0
                         i += 1
                     }
                     if json["leagues"][0]["events"][i]["periods"][periods_num]["moneyline"] == nil {
@@ -256,6 +257,7 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
             let newBet = SingleBet()
             newBet.homeTeamName = _event.homeTeamName
             newBet.awayTeamName = _event.awayTeamName
+            newBet.id = _event.id[self.event_id]
             newBet.league = _event.league
             newBet.time = _event.time
             newBet.status = 0

@@ -209,13 +209,27 @@ class SingleBet : Object {
     
     func updateStatus()
     {
+        if (isEnded()) {
+            self.status = 2
+            return
+        }
+        if (isStarted()) {return}
         let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(league)
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                var i: Int = 0, periods_num: Int = 0
                 print(json)
+                print(self)
+                while json["leagues"][0]["events"][i]["id"].intValue != 0 && json["leagues"][0]["events"][i]["id"].intValue != self.id{
+                    i += 1
+                }
+                if json["leagues"][0]["events"][i]["id"].intValue != 0 {
+                    self.firstScore = json["leagues"][0]["events"][i]["id"][0]["team1Score"].intValue
+                    self.firstScore = json["leagues"][0]["events"][i]["id"][0]["team2Score"].intValue
+                }
             case .failure(let error):
                 print(error)
             }
@@ -246,6 +260,14 @@ class SingleBet : Object {
     func isEnded() -> Bool
     {
         if (time + 6900 <= Date()) {
+            return true
+        }
+        return false
+    }
+    
+    func isStarted() -> Bool
+    {
+        if (time > Date()) {
             return true
         }
         return false
