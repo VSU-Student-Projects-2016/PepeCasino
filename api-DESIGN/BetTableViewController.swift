@@ -48,21 +48,21 @@ class BetTableViewController: UITableViewController {
     func loadBets()
     {
         try! realm.write() {
-
+            
         //realm.deleteAll()
         if bets.count == 0 {
             loadDef()
         }
         bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
             var i = 0
-            print(bets)
-                while(i < self.bets.count && self.bets[i].status < 2)
+            //print(bets)
+                while(i < 2)//self.bets.count && self.bets[i].status < 2)
                 {
                     self.bets[i].updateStatus()
-                    print(self.bets[i].league)
+                    //print(self.bets[i].league)
                     i += 1
                 }
-            }
+        }
         //self.tableView.isHidden = true
         self.tableView.reloadData()
     }

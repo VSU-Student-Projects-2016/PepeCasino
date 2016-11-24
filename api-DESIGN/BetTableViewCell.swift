@@ -14,6 +14,7 @@ class BetTableViewCell: UITableViewCell {
     @IBOutlet var lbTeamNames: UILabel!
     @IBOutlet var lbPlaced: UILabel!
     @IBOutlet var lbPaid: UILabel!
+    @IBOutlet weak var lbScore: UILabel!
     
     /*var _bet = SingleBet() {
         didSet {
@@ -74,6 +75,7 @@ class BetTableViewCell: UITableViewCell {
             lbPaid.text = "LIVE!"
 
         case 2:
+            lbScore.text = _bet.scoreAsString()
             if (_bet.isWon())
             {
                 lbPaid.textColor = UIColor.black

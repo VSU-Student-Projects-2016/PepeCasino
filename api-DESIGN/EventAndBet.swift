@@ -15,6 +15,8 @@ import SwiftyJSON
 
 class Balance : Object{
     dynamic var amount  = 0.0
+    
+    
 }
 
 //user defaults
@@ -187,7 +189,7 @@ class SingleBet : Object {
     dynamic var betTime = Date()
     dynamic var amount = 0.0
     //dynamic var isWon = 0 //0 - lost, 1 - won
-
+    //dynamic var isLoad = false
     func completeTeamNames() -> String
     {
         return homeTeamName + " - " + awayTeamName
@@ -209,16 +211,26 @@ class SingleBet : Object {
     
     func updateStatus()
     {
-        if (isEnded()) {
+        /*if (isEnded()) {
             self.status = 2
             return
-        }
-        if (isStarted()) {return}
-        let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(league)
+        }*/
+        let waitGroup = DispatchGroup.init()
+
+        //DispatchQueue.global().async() {
+        if (!self.isStarted()) {return}
+        
+        var isLoad = false
+        let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(self.league)
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        
+    //    DispatchQueue.main.async {
+        
+        waitGroup.enter()
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
+                isLoad = true
                 let json = JSON(value)
                 var i: Int = 0, periods_num: Int = 0
                 print(json)
@@ -231,17 +243,20 @@ class SingleBet : Object {
                     self.firstScore = json["leagues"][0]["events"][i]["id"][0]["team2Score"].intValue
                 }
             case .failure(let error):
+                isLoad = true
                 print(error)
             }
         }
-        if status == 2 {return}
-        let currTime = Date()
-        if currTime > time
-        {
-            self.status = 1
-        }
-        if (isEnded()) {status = 2}
+        waitGroup.leave()
+        //}
         
+        waitGroup.wait()
+        DispatchQueue.main.async {
+            self.status = 1
+            if (self.isEnded()) {self.status = 2}
+
+        }
+    
     }
     
     func isWon() -> Bool
@@ -267,7 +282,7 @@ class SingleBet : Object {
     
     func isStarted() -> Bool
     {
-        if (time > Date()) {
+        if (time < Date()) {
             return true
         }
         return false
@@ -275,7 +290,7 @@ class SingleBet : Object {
     
     func scoreAsString() -> String
     {
-        return String(firstScore) + ":" + String(firstScore)
+        return String(firstScore) + " : " + String(firstScore)
     }
     
     
