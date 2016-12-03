@@ -56,9 +56,10 @@ class BetTableViewController: UITableViewController {
             bets = realm.objects(SingleBet).sorted(byProperty: "status").sorted(byProperty: "time", ascending: false)
         }
         var i = 0
-        //print(bets)
+        print(bets)
         while(i < 2)//self.bets.count && self.bets[i].status < 2)
         {
+            //self.bets[i].updateStatus()
             updateStatus(_bet: self.bets[i])
             //print(self.bets[i].league)
             i += 1
@@ -127,6 +128,7 @@ class BetTableViewController: UITableViewController {
     
     func updateStatus(_bet: SingleBet)
     {
+        print(_bet)
         if (!_bet.isStarted()) {return}
         
         //let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(_bet.league)
@@ -134,7 +136,8 @@ class BetTableViewController: UITableViewController {
         
         
         var result = ""
-        alamoRequest(_bet : _bet) { (inner: () throws -> String) -> Void in
+        alamoRequest(_bet : _bet)
+        { (inner: () throws -> String) -> Void in
             do {
                 result = try inner()
                 
@@ -160,23 +163,13 @@ class BetTableViewController: UITableViewController {
     
     func alamoRequest(_bet : SingleBet, completion: @escaping (_ inner: () throws -> String) -> ())
     {
-        
-        var jsonValue : JSON?
-        var jsonString : String = String()
-        
-        
-        //Alamofire.request(.GET, URL, parameters: requestParameters).validate().responseJSON {
-        
+        print(_bet)
         let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(_bet.league)
         let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
         
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
-                if let value = response.result.value {
-                    jsonValue = JSON(value)
-                    jsonString = jsonValue!["error"].stringValue
-                    print("Value in implementation is: \(jsonString)")
                     let json = JSON(value)
                     var i: Int = 0, periods_num: Int = 0
                     print(json)
@@ -187,13 +180,20 @@ class BetTableViewController: UITableViewController {
                     var firScore = 0
                     var secScore = 0
                     if json["leagues"][0]["events"][i]["id"].intValue != 0 {
-                        firScore = json["leagues"][0]["events"][i]["id"][0]["team1Score"].intValue
-                        secScore = json["leagues"][0]["events"][i]["id"][0]["team2Score"].intValue
+                        print(json["leagues"][0]["events"][i]["periods"][0]["team1Score"].intValue)
+                        print(json["leagues"][0]["events"][i]["periods"][0]["team2Score"].intValue)
+                        firScore = json["leagues"][0]["events"][i]["periods"][0]["team1Score"].intValue
+                        secScore = json["leagues"][0]["events"][i]["periods"][0]["team2Score"].intValue
+                       // try! _bet.realm?.write {
+                            //_bet.firstScore = json["leagues"][0]["events"][i]["id"][0]["team1Score"].intValue
+                           // _bet.secondScore = json["leagues"][0]["events"][i]["id"][0]["team2Score"].intValue
+                       // }
                     }
+
                     var Res = String(firScore) + " " + String(secScore)
                     completion({return Res})
-                }
             case .failure(let error):
+                print(error)
                 completion({ return String(describing: error) })
             }
         }

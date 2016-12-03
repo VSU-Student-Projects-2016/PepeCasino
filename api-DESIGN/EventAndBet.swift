@@ -215,7 +215,7 @@ class SingleBet : Object {
             self.status = 2
             return
         }*/
-        let waitGroup = DispatchGroup.init()
+        //let waitGroup = DispatchGroup.init()
 
         //DispatchQueue.global().async() {
         if (!self.isStarted()) {return}
@@ -226,7 +226,7 @@ class SingleBet : Object {
         
     //    DispatchQueue.main.async {
         
-        waitGroup.enter()
+        //waitGroup.enter()
         Alamofire.request(url,headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -247,10 +247,10 @@ class SingleBet : Object {
                 print(error)
             }
         }
-        waitGroup.leave()
+        //waitGroup.leave()
         //}
         
-        waitGroup.wait()
+        //waitGroup.wait()
         DispatchQueue.main.async {
             self.status = 1
             if (self.isEnded()) {self.status = 2}
