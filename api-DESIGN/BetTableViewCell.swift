@@ -11,10 +11,12 @@ import UIKit
 class BetTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lbTime: UILabel!
-    @IBOutlet var lbTeamNames: UILabel!
     @IBOutlet var lbPlaced: UILabel!
     @IBOutlet var lbPaid: UILabel!
     @IBOutlet weak var lbScore: UILabel!
+    @IBOutlet weak var lbSecondName: UILabel!
+    @IBOutlet weak var lbFirstName: UILabel!
+    @IBOutlet weak var lbDraw: UILabel!
     
     /*var _bet = SingleBet() {
         didSet {
@@ -39,7 +41,26 @@ class BetTableViewCell: UITableViewCell {
     }*/
     func fill(from _bet: SingleBet) {
         let str = _bet.completeTeamNames()
-        lbTeamNames.text = str
+        lbFirstName.text = _bet.homeTeamName
+        lbSecondName.text = _bet.awayTeamName
+        switch (_bet.choice)
+        {
+        case 0:
+            lbFirstName.textColor = UIColor.black
+            lbDraw.textColor = UIColor.gray
+            lbSecondName.textColor = UIColor.gray
+        case 1:
+            lbSecondName.textColor = UIColor.gray
+            lbFirstName.textColor = UIColor.gray
+            lbDraw.textColor = UIColor.black
+        case 2:
+            lbSecondName.textColor = UIColor.black
+            lbFirstName.textColor = UIColor.gray
+            lbDraw.textColor = UIColor.gray
+        default: print ("kuk")
+        }
+        
+    
         //_bet.updateStatus()
         /*if (_bet.status != 2)
         {

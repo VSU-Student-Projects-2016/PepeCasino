@@ -40,6 +40,7 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
     let button = UIButton(type: UIButtonType.custom)
 
     var coeff = Double()
+    var choise = Int()
     var _event = SingleEvent()
     var event_id = 0;
     
@@ -222,12 +223,15 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
         case 0:
             betTeam.text! = "On the " +  _event.homeTeamName
             coeff = _event.coeffs[0]
+            choise = 0
         case 1:
             betTeam.text! = "On draw"
             coeff = _event.coeffs[1]
+            choise = 1
         case 2:
             betTeam.text! = "On the " + _event.awayTeamName
             coeff = _event.coeffs[2]
+            choise = 2
         default:
             print("kuk")
         }
@@ -263,6 +267,7 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
             newBet.status = 0
             newBet.amount = amount
             newBet.coefficient = coeff
+            newBet.choice = choise
             newBet.betTime = Date()
             self.realm.add(newBet)
             

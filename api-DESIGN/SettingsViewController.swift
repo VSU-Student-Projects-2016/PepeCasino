@@ -7,15 +7,37 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SettingsViewController: UIViewController {
 
+    let realm = try! Realm()
+
+    
+    @IBOutlet weak var btnResetAll: UIButton!
+    
+    
+    @IBAction func btnResetAll(_ sender: AnyObject) {
+        try! realm.write() {
+            realm.deleteAll()
+            self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
+        }
+    }
+    
+    @IBAction func btnResetBalance(_ sender: AnyObject) {
+        try! realm.write() {
+            realm.objects(Balance)[0].amount = 1000
+            self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
+
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.rightBarButtonItem = nil
 
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
         self.tabBarController?.navigationItem.rightBarButtonItem = nil

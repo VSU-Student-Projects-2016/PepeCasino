@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "BetTableViewController.(updateStatus(_bet : SingleBet) -&gt; ()).(closure #1).(closure #2):BetTableViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "BetTableViewController.(loadBets() -&gt; ()).(closure #1):BetTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,26 +14,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BetTableViewCell.fill(from : SingleBet) -&gt; ():BetTableViewCell.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "_bet.amount">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "BetTableViewController.(updateStatus(_bet : SingleBet) -&gt; ()).(closure #1):BetTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventTableViewController.loadSampleEvents() -&gt; ():SingleEventTableViewController.swift">
       </ContextState>
       <ContextState
          contextName = "SingleEventTableViewController.tableView(UITableView, numberOfRowsInSection : Int) -&gt; Int:SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "events.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleEventTableViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:SingleEventTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "indexPath.row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -43,10 +36,86 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SingleBet.(updateStatus() -&gt; ()).(closure #1):EventAndBet.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.firstScore = json[&quot;leagues&quot;][0][&quot;events&quot;][i][&quot;id&quot;][0][&quot;team1Score&quot;].intValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventTableViewController.viewWillAppear(Bool) -&gt; ():SingleEventTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tabBarController?.navigationItem.rightBarButtonItem">
+            </PersistentString>
+            <PersistentString
+               value = "tabBarController?.navigationItem.rightBarButtonItem.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewController.(updateStatus(_bet : SingleBet) -&gt; ()).(closure #1).(closure #1):BetTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventViewController.placeBetConfirm(AnyObject) -&gt; ():SingleEventViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_event">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewController.(updateStatus1(_bet : SingleBet) -&gt; ()).(closure #1):BetTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewCell.fill(from : SingleBet) -&gt; ():BetTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_bet.amount">
+            </PersistentString>
+            <PersistentString
+               value = "_bet.choice">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewController.(updateStatus1(_bet : SingleBet) -&gt; ()).(closure #1).(closure #2):BetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(ResArr[0])!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewController.updateStatus(_bet : SingleBet) -&gt; ():BetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "_bet.isStarted()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SingleEventTableViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:SingleEventTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SingleEventTableViewController.prepare(for : UIStoryboardSegue, sender : Any?) -&gt; ():SingleEventTableViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "self.tabBarController?.navigationItem.rightBarButtonItem.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BetTableViewController.(alamoRequest(_bet : SingleBet, completion : (() throws -&gt; String) -&gt; ()) -&gt; ()).(closure #1):BetTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json[&quot;leagues&quot;][0][&quot;events&quot;][i][&quot;id&quot;].intValue">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -58,28 +127,6 @@
             </PersistentString>
             <PersistentString
                value = "_event">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleEventViewController.placeBetConfirm(AnyObject) -&gt; ():SingleEventViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "_event">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SingleEventTableViewController.loadSampleEvents() -&gt; ():SingleEventTableViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SingleEventTableViewController.viewWillAppear(Bool) -&gt; ():SingleEventTableViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tabBarController?.navigationItem.rightBarButtonItem">
-            </PersistentString>
-            <PersistentString
-               value = "tabBarController?.navigationItem.rightBarButtonItem.action">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

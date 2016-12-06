@@ -40,8 +40,6 @@ class BetTableViewController: UITableViewController {
         newBet.choice = 1
         newBet.coefficient = 2.0
         self.realm.add(newBet)
-        
-        
     }
     
     //var bets = [SingleBet]()
@@ -57,10 +55,10 @@ class BetTableViewController: UITableViewController {
         }
         var i = 0
         print(bets)
-        while(i < 2)//self.bets.count && self.bets[i].status < 2)
+        while(i < self.bets.count && self.bets[i].status < 2)
         {
             //self.bets[i].updateStatus()
-            updateStatus(_bet: self.bets[i])
+            updateStatus1(_bet: self.bets[i])
             //print(self.bets[i].league)
             i += 1
         }
@@ -126,7 +124,65 @@ class BetTableViewController: UITableViewController {
         return cell
     }
     
+    
     func updateStatus(_bet: SingleBet)
+    {
+        /*if (isEnded()) {
+         self.status = 2
+         return
+         }*/
+        //let waitGroup = DispatchGroup.init()
+        
+        //DispatchQueue.global().async() {
+        if (!_bet.isStarted()) {return}
+        
+        
+        var isLoad = false
+        let url = "https://api.pinnaclesports.com/v1/fixtures/settled?sportid=29&leagueids=" + String(_bet.league)
+        let headers: HTTPHeaders = ["Authorization":"Basic R0s5MDcyOTU6IWpvemVmMjAwMA=="]
+        
+        //    DispatchQueue.main.async {
+        
+        //waitGroup.enter()
+        Alamofire.request(url,headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                isLoad = true
+                let json = JSON(value)
+                var i: Int = 0, periods_num: Int = 0
+                print(json)
+                print(self)
+                while json["leagues"][0]["events"][i]["id"].intValue != 0 && json["leagues"][0]["events"][i]["id"].intValue != _bet.id{
+                    i += 1
+                }
+                if json["leagues"][0]["events"][i]["id"].intValue != 0 {
+                    try! self.realm.write{
+                        _bet.firstScore = json["leagues"][0]["events"][i]["id"][0]["team1Score"].intValue
+                        _bet.firstScore = json["leagues"][0]["events"][i]["id"][0]["team2Score"].intValue
+                    }
+                }
+            case .failure(let error):
+                isLoad = true
+                print(error)
+            }
+        }
+        //waitGroup.leave()
+        //}
+        
+        //waitGroup.wait()
+        DispatchQueue.main.async {
+            try! self.realm.write{
+                _bet.status = 1
+                
+                if (_bet.isEnded()) {_bet.status = 2}
+                self.tableView.reloadData()
+            }
+            
+        }
+        
+    }
+
+    func updateStatus1(_bet: SingleBet)
     {
         print(_bet)
         if (!_bet.isStarted()) {return}
@@ -147,6 +203,13 @@ class BetTableViewController: UITableViewController {
                     try! _bet.realm?.write {
                         _bet.firstScore = Int(ResArr[0])!
                         _bet.secondScore = Int(ResArr[1])!
+                        self.tableView.reloadData()
+                        if _bet.isWon() {
+                            self.realm.objects(Balance)[0].amount += _bet.amount * _bet.coefficient
+                            self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
+                            self.tableView.reloadData()
+                        }
+
                     }
                 }
                 
@@ -157,7 +220,14 @@ class BetTableViewController: UITableViewController {
         
         try! realm.write() {
             _bet.status = 1
-            if (_bet.isEnded()) {_bet.status = 2}
+            if (_bet.isEnded())
+            {
+                _bet.status = 2
+                //if _bet.isWon() {
+                //    realm.objects(Balance)[0].amount += _bet.amount*_bet.coefficient
+                //}
+                
+            }
         }
     }
     

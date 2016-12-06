@@ -261,6 +261,7 @@ class SingleBet : Object {
     
     func isWon() -> Bool
     {
+        if (!isEnded()) {return false}
         switch choice{
         case 0:
             return firstScore > secondScore
@@ -290,7 +291,7 @@ class SingleBet : Object {
     
     func scoreAsString() -> String
     {
-        return String(firstScore) + " : " + String(firstScore)
+        return String(firstScore) + " : " + String(secondScore)
     }
     
     
