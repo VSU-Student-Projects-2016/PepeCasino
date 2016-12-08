@@ -20,16 +20,27 @@ class SettingsViewController: UIViewController {
     @IBAction func btnResetAll(_ sender: AnyObject) {
         try! realm.write() {
             realm.deleteAll()
+            let new_bal = Balance()
+            new_bal.amount = 1000.0;
+            self.realm.add(new_bal)
+
             self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
         }
+        let alert = UIAlertController(title: "Success", message: "Your data has been reset to stock.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:nil))
+        self.present(alert, animated:true, completion:nil)
+
     }
     
     @IBAction func btnResetBalance(_ sender: AnyObject) {
         try! realm.write() {
             realm.objects(Balance)[0].amount = 1000
             self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
-
         }
+        let alert = UIAlertController(title: "Success", message: "Your balance has updated to 1000PPS!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", 	style: UIAlertActionStyle.default, handler:nil))
+        self.present(alert, animated:true, completion:nil)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()

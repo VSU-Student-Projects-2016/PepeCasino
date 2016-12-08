@@ -69,15 +69,23 @@ class BetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loadBets()
         segmentedCont.selectedSegmentIndex = 2
-        //if bets.status
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
         self.tabBarController?.navigationItem.rightBarButtonItem = nil
         
         loadBets()
+        
+        if (ifLoseAll())
+        {
+            let alert = UIAlertController(title: "Loser Warning", message: "You lose all the bets and all the funds from your wallet. Please, reset the data in 'Settings' menu!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Mkay", 	style: UIAlertActionStyle.default, handler:nil))
+            self.present(alert, animated:true, completion:nil)
+        }
+    }
+    func ifLoseAll() -> Bool {
+        return bets[0].status==2 && self.realm.objects(Balance)[0].amount < 1
     }
     @IBAction func segmentedContChanged(_ sender: AnyObject) {
         //segmentedCont.isHidden = true;
