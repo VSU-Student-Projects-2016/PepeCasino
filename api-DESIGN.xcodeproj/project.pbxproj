@@ -30,6 +30,7 @@
 		AE9A826F1DBB6A8200617C77 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE9A82691DBB6A7700617C77 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */; };
 		AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA748A01DB25170000F1933 /* SettingsViewController.swift */; };
+		AEDBA7111DFC048100EA9435 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDBA7101DFC048100EA9435 /* AppData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,7 @@
 		AE9A82691DBB6A7700617C77 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AEA748A01DB25170000F1933 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AEDBA7101DFC048100EA9435 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				AE15D3E21D9FD53B00ADAEC1 /* AppDelegate.swift */,
+				AEDBA7101DFC048100EA9435 /* AppData.swift */,
 				AE15D3F41D9FD5D600ADAEC1 /* EventAndBet.swift */,
 				84C78FF51DAE74F100972F0F /* BetTableViewCell.swift */,
 				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
@@ -484,6 +487,7 @@
 				AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */,
 				AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */,
 				84C78FF41DAE74BA00972F0F /* BetTableViewController.swift in Sources */,
+				AEDBA7111DFC048100EA9435 /* AppData.swift in Sources */,
 				AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */,
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
 				84481E041DCBF974008CACE3 /* RealmHandler.swift in Sources */,

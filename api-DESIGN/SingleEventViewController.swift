@@ -244,7 +244,9 @@ class SingleEventViewController: UIViewController, UITextFieldDelegate {
 
         
     }
+    
     @IBAction func placeBetConfirm(_ sender: AnyObject) {
+        AppData.shared.balance += 10
         if (realm.objects(Balance)[0].amount < Double(betAmount.text!)!) {
             betErrorAmount.isHidden = false
         } else {
