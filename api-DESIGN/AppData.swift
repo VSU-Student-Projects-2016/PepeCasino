@@ -15,7 +15,7 @@ public class AppData {
         didSet {
             // update realm
             // post notification
-            NotificationCenter.default.post(<#T##notification: Notification##Notification#>)
+            //NotificationCenter.default.post(<#T##notification: Notification##Notification#>)
         }
     }
     private init () {

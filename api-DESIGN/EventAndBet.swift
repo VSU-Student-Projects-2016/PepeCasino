@@ -261,7 +261,7 @@ class SingleBet : Object {
     
     func isWon() -> Bool
     {
-        if (!isEnded()) {return false}
+        //if (!isEnded()) {return false}
         switch choice{
         case 0:
             return firstScore > secondScore
@@ -275,7 +275,7 @@ class SingleBet : Object {
     }
     func isEnded() -> Bool
     {
-        if (time + 6900 <= Date()) {
+        if (time + 7200 <= Date()) {
             return true
         }
         return false

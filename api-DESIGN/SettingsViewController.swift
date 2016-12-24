@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+
 class SettingsViewController: UIViewController {
 
     let realm = try! Realm()
@@ -45,9 +46,16 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.rightBarButtonItem = nil
-
         // Do any additional setup after loading the view.
     }
+    
+        func onboardingConfigurationItem(item: OnboardingContentViewItem, index: Int) {
+        
+        //item.titleLabel?.backgroundColor = .redColor()
+        //item.descriptionLabel?.backgroundColor = .redColor()
+        //item.imageView = UIImageView.init(image: #imageLiteral(resourceName: "pepe_logo"))
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // No need for semicolon
@@ -71,3 +79,5 @@ class SettingsViewController: UIViewController {
     */
 
 }
+
+

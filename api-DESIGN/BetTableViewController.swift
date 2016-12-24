@@ -207,15 +207,16 @@ class BetTableViewController: UITableViewController {
                 
                 if result != "" {
                     var ResArr = result.characters.split{$0 == " "}.map(String.init)
-                    
-                    try! _bet.realm?.write {
-                        _bet.firstScore = Int(ResArr[0])!
-                        _bet.secondScore = Int(ResArr[1])!
-                        self.tableView.reloadData()
-                        if _bet.isWon() {
-                            self.realm.objects(Balance)[0].amount += _bet.amount * _bet.coefficient
-                            self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
+                    if (_bet.isEnded() && Int(ResArr[0]) != -1 && Int(ResArr[1]) != -1) {
+                        try! _bet.realm?.write {
+                            _bet.firstScore = Int(ResArr[0])!
+                            _bet.secondScore = Int(ResArr[1])!
                             self.tableView.reloadData()
+                            if _bet.isWon() {
+                            self.realm.objects(Balance)[0].amount += _bet.amount * _bet.coefficient
+                                self.navigationItem.title = "Balance: " + String(self.realm.objects(Balance)[0].amount) + " PPS"
+                                self.tableView.reloadData()
+                            }
                         }
 
                     }
@@ -255,8 +256,8 @@ class BetTableViewController: UITableViewController {
                     while json["leagues"][0]["events"][i]["id"].intValue != 0 && json["leagues"][0]["events"][i]["id"].intValue != _bet.id{
                         i += 1
                     }
-                    var firScore = 0
-                    var secScore = 0
+                    var firScore = -1
+                    var secScore = -1
                     if json["leagues"][0]["events"][i]["id"].intValue != 0 {
                         print(json["leagues"][0]["events"][i]["periods"][0]["team1Score"].intValue)
                         print(json["leagues"][0]["events"][i]["periods"][0]["team2Score"].intValue)

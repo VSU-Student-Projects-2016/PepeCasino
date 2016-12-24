@@ -31,6 +31,17 @@
 		AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */; };
 		AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA748A01DB25170000F1933 /* SettingsViewController.swift */; };
 		AEDBA7111DFC048100EA9435 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDBA7101DFC048100EA9435 /* AppData.swift */; };
+		AEF90E221E0E8D1700DE2003 /* EnterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90E211E0E8D1700DE2003 /* EnterView.swift */; };
+		AEF90ED81E0E9AF900DE2003 /* FillAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90EC71E0E9AF900DE2003 /* FillAnimationView.swift */; };
+		AEF90ED91E0E9AF900DE2003 /* GestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90EC91E0E9AF900DE2003 /* GestureControl.swift */; };
+		AEF90EDA1E0E9AF900DE2003 /* Configuring.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ECB1E0E9AF900DE2003 /* Configuring.swift */; };
+		AEF90EDB1E0E9AF900DE2003 /* ConstraintsHalper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ECC1E0E9AF900DE2003 /* ConstraintsHalper.swift */; };
+		AEF90EDC1E0E9AF900DE2003 /* OnboardingContantViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ECF1E0E9AF900DE2003 /* OnboardingContantViewItem.swift */; };
+		AEF90EDD1E0E9AF900DE2003 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ED01E0E9AF900DE2003 /* OnboardingContentView.swift */; };
+		AEF90EDE1E0E9AF900DE2003 /* PageViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ED31E0E9AF900DE2003 /* PageViewItem.swift */; };
+		AEF90EDF1E0E9AF900DE2003 /* PageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ED51E0E9AF900DE2003 /* PageContainer.swift */; };
+		AEF90EE01E0E9AF900DE2003 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ED61E0E9AF900DE2003 /* PageView.swift */; };
+		AEF90EE11E0E9AF900DE2003 /* PaperOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF90ED71E0E9AF900DE2003 /* PaperOnboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +197,18 @@
 		AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		AEA748A01DB25170000F1933 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AEDBA7101DFC048100EA9435 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		AEF90E211E0E8D1700DE2003 /* EnterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterView.swift; sourceTree = "<group>"; };
+		AEF90E301E0E8D4D00DE2003 /* api-DESIGN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "api-DESIGN-Bridging-Header.h"; sourceTree = "<group>"; };
+		AEF90EC71E0E9AF900DE2003 /* FillAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillAnimationView.swift; sourceTree = "<group>"; };
+		AEF90EC91E0E9AF900DE2003 /* GestureControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureControl.swift; sourceTree = "<group>"; };
+		AEF90ECB1E0E9AF900DE2003 /* Configuring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuring.swift; sourceTree = "<group>"; };
+		AEF90ECC1E0E9AF900DE2003 /* ConstraintsHalper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintsHalper.swift; sourceTree = "<group>"; };
+		AEF90ECF1E0E9AF900DE2003 /* OnboardingContantViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContantViewItem.swift; sourceTree = "<group>"; };
+		AEF90ED01E0E9AF900DE2003 /* OnboardingContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentView.swift; sourceTree = "<group>"; };
+		AEF90ED31E0E9AF900DE2003 /* PageViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewItem.swift; sourceTree = "<group>"; };
+		AEF90ED51E0E9AF900DE2003 /* PageContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContainer.swift; sourceTree = "<group>"; };
+		AEF90ED61E0E9AF900DE2003 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		AEF90ED71E0E9AF900DE2003 /* PaperOnboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaperOnboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +259,7 @@
 		AE15D3D61D9FD53B00ADAEC1 = {
 			isa = PBXGroup;
 			children = (
+				AEF90EC51E0E9AF900DE2003 /* Source */,
 				AE9A82681DBB6A7700617C77 /* Realm.framework */,
 				AE9A82691DBB6A7700617C77 /* RealmSwift.framework */,
 				84B02A701DB6D23B000A434E /* SwiftyJSON.xcodeproj */,
@@ -262,6 +286,7 @@
 				84C78FF51DAE74F100972F0F /* BetTableViewCell.swift */,
 				84C78FF31DAE74BA00972F0F /* BetTableViewController.swift */,
 				AE15D3E61D9FD53B00ADAEC1 /* Main.storyboard */,
+				AEF90E211E0E8D1700DE2003 /* EnterView.swift */,
 				AE9A82721DBB8E5600617C77 /* TabBarViewController.swift */,
 				AEA748A01DB25170000F1933 /* SettingsViewController.swift */,
 				84323D101DA45A24003D6A83 /* SingleEventViewController.swift */,
@@ -271,8 +296,90 @@
 				AE15D3EB1D9FD53B00ADAEC1 /* LaunchScreen.storyboard */,
 				84481E031DCBF974008CACE3 /* RealmHandler.swift */,
 				AE15D3EE1D9FD53B00ADAEC1 /* Info.plist */,
+				AEF90E301E0E8D4D00DE2003 /* api-DESIGN-Bridging-Header.h */,
 			);
 			path = "api-DESIGN";
+			sourceTree = "<group>";
+		};
+		AEF90EC51E0E9AF900DE2003 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90EC61E0E9AF900DE2003 /* FillAnimatinView */,
+				AEF90EC81E0E9AF900DE2003 /* GestureControl */,
+				AEF90ECA1E0E9AF900DE2003 /* Helpers */,
+				AEF90ECD1E0E9AF900DE2003 /* OnboardingContantView */,
+				AEF90ED11E0E9AF900DE2003 /* PageView */,
+				AEF90ED71E0E9AF900DE2003 /* PaperOnboarding.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		AEF90EC61E0E9AF900DE2003 /* FillAnimatinView */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90EC71E0E9AF900DE2003 /* FillAnimationView.swift */,
+			);
+			path = FillAnimatinView;
+			sourceTree = "<group>";
+		};
+		AEF90EC81E0E9AF900DE2003 /* GestureControl */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90EC91E0E9AF900DE2003 /* GestureControl.swift */,
+			);
+			path = GestureControl;
+			sourceTree = "<group>";
+		};
+		AEF90ECA1E0E9AF900DE2003 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ECB1E0E9AF900DE2003 /* Configuring.swift */,
+				AEF90ECC1E0E9AF900DE2003 /* ConstraintsHalper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		AEF90ECD1E0E9AF900DE2003 /* OnboardingContantView */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ECE1E0E9AF900DE2003 /* Item */,
+				AEF90ED01E0E9AF900DE2003 /* OnboardingContentView.swift */,
+			);
+			path = OnboardingContantView;
+			sourceTree = "<group>";
+		};
+		AEF90ECE1E0E9AF900DE2003 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ECF1E0E9AF900DE2003 /* OnboardingContantViewItem.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		AEF90ED11E0E9AF900DE2003 /* PageView */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ED21E0E9AF900DE2003 /* Item */,
+				AEF90ED41E0E9AF900DE2003 /* PageContainerView */,
+				AEF90ED61E0E9AF900DE2003 /* PageView.swift */,
+			);
+			path = PageView;
+			sourceTree = "<group>";
+		};
+		AEF90ED21E0E9AF900DE2003 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ED31E0E9AF900DE2003 /* PageViewItem.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		AEF90ED41E0E9AF900DE2003 /* PageContainerView */ = {
+			isa = PBXGroup;
+			children = (
+				AEF90ED51E0E9AF900DE2003 /* PageContainer.swift */,
+			);
+			path = PageContainerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +418,7 @@
 				TargetAttributes = {
 					AE15D3DE1D9FD53B00ADAEC1 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -483,17 +591,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEF90EDC1E0E9AF900DE2003 /* OnboardingContantViewItem.swift in Sources */,
 				AE15D3FD1D9FF14E00ADAEC1 /* SingleEventTableViewController.swift in Sources */,
+				AEF90EDF1E0E9AF900DE2003 /* PageContainer.swift in Sources */,
+				AEF90ED81E0E9AF900DE2003 /* FillAnimationView.swift in Sources */,
 				AE15D3F91D9FE57100ADAEC1 /* SingleEventTableViewCell.swift in Sources */,
+				AEF90EDA1E0E9AF900DE2003 /* Configuring.swift in Sources */,
 				AE15D3F51D9FD5D600ADAEC1 /* EventAndBet.swift in Sources */,
 				84C78FF41DAE74BA00972F0F /* BetTableViewController.swift in Sources */,
+				AEF90EDB1E0E9AF900DE2003 /* ConstraintsHalper.swift in Sources */,
 				AEDBA7111DFC048100EA9435 /* AppData.swift in Sources */,
 				AE9A82731DBB8E5600617C77 /* TabBarViewController.swift in Sources */,
+				AEF90ED91E0E9AF900DE2003 /* GestureControl.swift in Sources */,
+				AEF90EDD1E0E9AF900DE2003 /* OnboardingContentView.swift in Sources */,
+				AEF90EE11E0E9AF900DE2003 /* PaperOnboarding.swift in Sources */,
+				AEF90EE01E0E9AF900DE2003 /* PageView.swift in Sources */,
 				84323D111DA45A24003D6A83 /* SingleEventViewController.swift in Sources */,
 				84481E041DCBF974008CACE3 /* RealmHandler.swift in Sources */,
 				84C78FF61DAE74F100972F0F /* BetTableViewCell.swift in Sources */,
 				AE15D3E31D9FD53B00ADAEC1 /* AppDelegate.swift in Sources */,
+				AEF90EDE1E0E9AF900DE2003 /* PageViewItem.swift in Sources */,
 				AEA748A11DB25170000F1933 /* SettingsViewController.swift in Sources */,
+				AEF90E221E0E8D1700DE2003 /* EnterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +749,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -638,6 +758,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vsu.ru.api-DESIGN";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "api-DESIGN/api-DESIGN-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -647,6 +769,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -655,6 +778,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vsu.ru.api-DESIGN";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "api-DESIGN/api-DESIGN-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

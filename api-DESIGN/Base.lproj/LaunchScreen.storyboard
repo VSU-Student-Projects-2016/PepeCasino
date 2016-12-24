@@ -59,6 +59,24 @@
             </objects>
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="EDa-2t-W2i">
+            <objects>
+                <viewController id="EXq-e0-5id" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WkF-CK-bNx"/>
+                        <viewControllerLayoutGuide type="bottom" id="FDj-Jv-u2H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CvB-gc-OVn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RQE-Us-sMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="375"/>
+        </scene>
     </scenes>
     <resources>
         <image name="pepe_logo" width="142" height="142"/>
